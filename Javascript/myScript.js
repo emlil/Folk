@@ -22,12 +22,14 @@ async function getUtdanning() {
 
 async function getBefolkning() {
 let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
-return await call.json();
+   call= await call.json();
+return call["elementer"];
 }
 
 async function getSysselsatte() {
     let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
-    return await call.json();
+    call=await call.json();
+    return call["elementer"]
 }
 
 async function onStart() {
@@ -38,17 +40,25 @@ async function onStart() {
     } catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
-    let sysselsatt= await getSysselsatte();
-    console.log(sysselsatt);
+    try {
+        let sysselsatt = await getSysselsatte();
+        console.log(sysselsatt);
+    }
+    catch(e) {
+        console.log("CAUGHT EXCEPTION", e);
+    }
 
     let befolkning= await getBefolkning();
     console.log(befolkning);
    let befolkningData= new befolkningConstruct(befolkning);
+   console.log(befolkningData);
+
 
 }
 function befolkningConstruct(datasett) {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-    getNames=()=>{
+    this.datasett=datasett;
+    let getNames=()=>{
         let arr=[];
         for (elementer in datasett){
             arr.push(elementer);
