@@ -43,7 +43,26 @@ async function onStart() {
 
     let befolkning= await getBefolkning();
     console.log(befolkning);
+   let befolkningData= new befolkningConstruct(befolkning);
 
+}
+function befolkningConstruct(datasett) {
+    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
+    getNames=()=>{
+        let arr=[];
+        for (elementer in datasett){
+            arr.push(elementer);
+            return arr;
+        }
+    }
+
+    
+}
+function sysselsattConstruct(datasett) {
+    
+}
+function utdaninngConstuct(datasett) {
+    
 }
 
 onStart();
