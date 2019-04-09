@@ -15,37 +15,34 @@ async function getUtdanning() {
     console.log("HELLO");
 
     return job;*/
-    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json")
+    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/85432.json");
     let data = await call.json();
     return data;
 }
 
-function getBefolkning() {
-
+async function getBefolkning() {
+let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
+return await call.json();
 }
 
-function getSysselsatte() {
-
+async function getSysselsatte() {
+    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
+    return await call.json();
 }
 
 async function onStart() {
 
     try {
-        //let answer = await getUtdanning();
-
-        getUtdanning().then(
-            function(answer) {
-                console.log(answer);
-            }
-        ).catch(function(error) {
-            console.log("something bad happened");
-        });
-        //console.log(answer);
+        let utdanning = await getUtdanning();
+        console.log(utdanning);
     } catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
-    //await getSysselsatte();
-    //await getUtdanning();
+    let sysselsatt= await getSysselsatte();
+    console.log(sysselsatt);
+
+    let befolkning= await getBefolkning();
+    console.log(befolkning);
 
 }
 
