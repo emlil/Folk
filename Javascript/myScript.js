@@ -40,9 +40,19 @@ async function getSysselsatte() {
             arr.push(elementer);
         }
         return arr;
+    };
+    this.getIDs=function () {
+        let arr=[];
+        for (elementer in this.datasett){
+            arr.push(this.datasett[elementer]["kommunenummer"])
+        }
+        return arr;
+    };
+    this.getInfo=function () {
+
     }
 }
-
+let pikk;
 async function onStart() {
 
     try {
@@ -61,8 +71,10 @@ async function onStart() {
 
     let befolkning= await getBefolkning();
     console.log(befolkning);
-    let pikk= new BefolkningConstruct(befolkning);
-    console.log(pikk.getNames())
+     pikk= new BefolkningConstruct(befolkning);
+    //console.log(pikk.getNames())
+    console.log(pikk.getIDs())
+
 
 }
 
