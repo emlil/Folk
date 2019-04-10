@@ -48,32 +48,42 @@ async function getSysselsatte() {
         }
         return arr;
     };
-    this.getInfo=function () {
-
+    this.getInfo=function (kommuneNr) {
+        for (elementer in this.datasett){
+            if(this.datasett[elementer]["kommunenummer"]){
+                let out="";
+                out=elementer.toString()+JSON.stringify(this.datasett[elementer]);
+                return out;
+            }
+        }
+        return "error";
     }
 }
-let pikk;
-async function onStart() {
 
+async function onStart() {
+    let sysselsatt;
+    let utdanning;
+    let befolkning;
     try {
-        let utdanning = await getUtdanning();
+         utdanning = await getUtdanning();
         console.log(utdanning);
     } catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
     try {
-        let sysselsatt = await getSysselsatte();
+         sysselsatt = await getSysselsatte();
         console.log(sysselsatt);
     }
+
     catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
 
-    let befolkning= await getBefolkning();
-    console.log(befolkning);
-     pikk= new BefolkningConstruct(befolkning);
-    //console.log(pikk.getNames())
-    console.log(pikk.getIDs())
+     befolkning= await getBefolkning();
+     console.log(befolkning);
+     befolkObj= new BefolkningConstruct(befolkning);
+    //console.log(befolkObj.getNames())
+  //  console.log(befolkObj.getInfo("0101"))
 
 
 }
@@ -84,5 +94,6 @@ function sysselsattConstruct(datasett) {
 function utdaninngConstuct(datasett) {
     
 }
+let befolkObj;
 
 onStart();
