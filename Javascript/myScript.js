@@ -31,6 +31,17 @@ async function getSysselsatte() {
     call=await call.json();
     return call["elementer"]
 }
+ function BefolkningConstruct(datasett) {
+    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
+    this.datasett= datasett;
+    this.getNames= function () {
+        let arr=[];
+        for (elementer in this.datasett){
+            arr.push(elementer);
+        }
+        return arr;
+    }
+}
 
 async function onStart() {
 
@@ -50,24 +61,11 @@ async function onStart() {
 
     let befolkning= await getBefolkning();
     console.log(befolkning);
-   let befolkningData= new befolkningConstruct(befolkning);
-   console.log(befolkningData);
-
+    let pikk= new BefolkningConstruct(befolkning);
+    console.log(pikk.getNames())
 
 }
-function befolkningConstruct(datasett) {
-    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-    this.datasett=datasett;
-    let getNames=()=>{
-        let arr=[];
-        for (elementer in datasett){
-            arr.push(elementer);
-            return arr;
-        }
-    }
 
-    
-}
 function sysselsattConstruct(datasett) {
     
 }
