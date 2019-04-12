@@ -70,8 +70,8 @@ async function getSysselsatte() {
      document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
  }
 
- function getOversikt(){
-
+ async function getOversikt(){
+   await visInnhold('oversikt');
          let arr="";
          for (elementer in befolkObj.datasett){
             let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]+befolkObj.datasett[elementer]["Menn"]["2018"];
@@ -117,6 +117,21 @@ function sysselsattConstruct(datasett) {
 function utdaninngConstuct(datasett) {
     
 }
+
+function visInnhold(ny){
+
+    let arr=["intro","oversiktData","detalj","sammenligning"];
+    arr.forEach(function (elementer) {
+        if (elementer !== ny) {
+            document.getElementById(elementer).style.display = "none";
+        } else {
+            document.getElementById(elementer).style.display = "block";
+        }
+
+    })
+}
+
+
 let befolkObj;
 
 onStart();

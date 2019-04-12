@@ -21,18 +21,33 @@ button:hover{
     float: top;
 }
 footer{
-    background-color: aliceblue;
-    position: relative;
+    background-color: #ff0907;
+    color: #c8e6e3;
+    position: sticky;
     left: 0;
-    bottom: 0;
+    bottom: 0%;
+    height: 50px;
     width: 100%;
     float: bottom;
+    text-align: center;
 }
 #oversiktData{
     border: 5px dotted #dc272a;
     width: 500px;
     height: 500px;
-    overflow: hidden;
     overflow: scroll;
 }
+#intro{
+display: block;
+}
+#oversiktData{
+    display: none;
+}
+#detalj{
+display: none;
+}
+#sammenligning{
+    display: none;
+}
+
 
