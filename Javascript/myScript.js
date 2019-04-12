@@ -32,28 +32,29 @@ async function getSysselsatte() {
     return call["elementer"]
 }
 
-genConstruct.prototype ={
+function GenConstruct(){
 
 }
 
-genConstruct.prototype.getNames=function(){
+function protoTest(){
+  var res = Object.create(genConstruct)
+}
+
+GenConstruct.prototype.getNames=function(){
       let arr=[];
       for (elementer in this.datasett){
           arr.push(elementer);
       }
       return arr;
-  };
+  }
 
-}
-
-genConstruct.prototype.getDetalj=function(){
+GenConstruct.prototype.getDetalj=function(){
       let nrInn= document.getElementById("detaljNr").value;
       console.log(nrInn);
       document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
     }
-}
 
-genConstruct.prototype.getInfo=function(kommNr){
+GenConstruct.prototype.getInfo=function(kommNr){
   for (elementer in this.datasett){
       if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
           let out="";
@@ -62,62 +63,13 @@ genConstruct.prototype.getInfo=function(kommNr){
       }
     }
   return "error";
-};
-
-function genConstruct(){
-  var objbro = new Object(genConstruct())
 }
 
 
  function BefolkningConstruct(datasett) {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
     this.datasett= datasett;
-
-    this.getNames= function () {
-        let arr=[];
-        for (elementer in this.datasett){
-            arr.push(elementer);
-        }
-        return arr;
-    };
-
-
-    this.getIDs=function () {
-        let arr=[];
-        for (elementer in this.datasett){
-            arr.push(this.datasett[elementer]["kommunenummer"])
-        }
-        return arr;
-    };
-
-
-    this.getInfo=function (kommuneNr) {
-        for (elementer in this.datasett){
-            if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-                let out="";
-                out=elementer.toString()+JSON.stringify(this.datasett[elementer]);
-                return out;
-            }
-        }
-        return "error";
-    }
-}
- function getDetalj(){
-     let nrInn= document.getElementById("detaljNr").value;
-     console.log(nrInn);
-     document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
- }
-
- function getOversikt(){
-         let arr="";
-         for (elementer in befolkObj.datasett){
-            let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]+befolkObj.datasett[elementer]["Menn"]["2018"];
-
-            arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]["kommunenummer"]+"<p>" +
-                "<p>Siste måling av befolkning: "+befolkning+"</p><br>");
-         }
-
-document.getElementById("oversiktData").innerHTML=arr;
+    
  }
 
 async function onStart() {
@@ -142,9 +94,9 @@ async function onStart() {
      befolkning= await getBefolkning();
      console.log(befolkning);
      befolkObj= new BefolkningConstruct(befolkning);
-     sysselObj = new sysselsattConstruct(syssel);
+    //sysselObj = new sysselsattConstruct(syssel);
     //console.log(befolkObj.getNames())
-  //  console.log(befolkObj.getInfo("0101"))
+    //console.log(befolkObj.getInfo("0101"))
 
 
 }
