@@ -1,4 +1,4 @@
-
+//Henter Utdanning(JSON) fra wilbody
 async function getUtdanning() {
     /*let job =  new Promise(
       function(resolve, reject) {
@@ -20,17 +20,20 @@ async function getUtdanning() {
     return data;
 }
 
+//Henter Befolkning(JSON) fra wildboy (fetch er ES6, la oss spørre Truls om dette)
 async function getBefolkning() {
 let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
    call= await call.json();
 return call["elementer"];
 }
 
+//Henter Sysselsatte(JSON) fra Wildboy
 async function getSysselsatte() {
     let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
     call=await call.json();
     return call["elementer"]
 }
+
  function BefolkningConstruct(datasett) {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
     this.datasett= datasett;
@@ -112,10 +115,10 @@ async function onStart() {
 }
 
 function sysselsattConstruct(datasett) {
-    
+
 }
 function utdaninngConstuct(datasett) {
-    
+
 }
 let befolkObj;
 
