@@ -74,6 +74,27 @@ async function getSysselsatte() {
     }
 }
 
+function sysselsattConstruct(datasett) {
+  this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
+  this.datasett= datasett;
+
+  this.getNames= function () {
+      let arr=[];
+      for (elementer in this.datasett){
+          arr.push(elementer);
+      }
+      return arr;
+  };
+
+  this.sysselSattePros = function(){
+    let arr = [];
+    for (elementer in this.datasett){
+      arr.push(this.datasett[elementer]["Begge kjønn"])
+    }
+    return arr;
+  }
+};
+
 //getDetlaj Henter data fra html dokumentet og endrer på dataen i
 //detaljData klassen til det get info finner.
  function getDetalj(){
@@ -118,17 +139,17 @@ async function onStart() {
     }
 
      befolkning = await getBefolkning();
+     syssel = await getSysselsatte();
      console.log(befolkning);
      befolkObj = new BefolkningConstruct(befolkning);
+     sysselObj = new sysselsattConstruct(syssel)
     //console.log(befolkObj.getNames())
     //console.log(befolkObj.getInfo("0101"))
 
 
-}
-
-function sysselsattConstruct(datasett) {
 
 }
+
 function utdaninngConstuct(datasett) {
 
 }
