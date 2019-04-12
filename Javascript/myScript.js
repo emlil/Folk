@@ -34,6 +34,7 @@ async function getSysselsatte() {
  function BefolkningConstruct(datasett) {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
     this.datasett= datasett;
+
     this.getNames= function () {
         let arr=[];
         for (elementer in this.datasett){
@@ -41,6 +42,8 @@ async function getSysselsatte() {
         }
         return arr;
     };
+
+
     this.getIDs=function () {
         let arr=[];
         for (elementer in this.datasett){
@@ -48,9 +51,11 @@ async function getSysselsatte() {
         }
         return arr;
     };
+
+
     this.getInfo=function (kommuneNr) {
         for (elementer in this.datasett){
-            if(this.datasett[elementer]["kommunenummer"]){
+            if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
                 let out="";
                 out=elementer.toString()+JSON.stringify(this.datasett[elementer]);
                 return out;
@@ -59,6 +64,24 @@ async function getSysselsatte() {
         return "error";
     }
 }
+ function getDetalj(){
+     let nrInn= document.getElementById("detaljNr").value;
+     console.log(nrInn);
+     document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
+ }
+
+ function getOversikt(){
+
+         let arr="";
+         for (elementer in befolkObj.datasett){
+            let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]+befolkObj.datasett[elementer]["Menn"]["2018"];
+
+            arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]["kommunenummer"]+"<p> <br>" +
+                "<p> siste måling av befolkning: "+befolkning+"</p><br>");
+         }
+document.getElementById("oversiktData").innerHTML=arr;
+ }
+
 
 async function onStart() {
     let sysselsatt;
