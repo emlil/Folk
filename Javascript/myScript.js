@@ -22,47 +22,132 @@ async function getUtdanning() {
 
 async function getBefolkning() {
 let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
-return await call.json();
+   call= await call.json();
+return call["elementer"];
 }
 
 async function getSysselsatte() {
     let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
-    return await call.json();
+    call=await call.json();
+    return call["elementer"]
 }
 
-async function onStart() {
+genConstruct.prototype ={
 
+}
+
+genConstruct.prototype.getNames=function(){
+      let arr=[];
+      for (elementer in this.datasett){
+          arr.push(elementer);
+      }
+      return arr;
+  };
+
+}
+
+genConstruct.prototype.getDetalj=function(){
+      let nrInn= document.getElementById("detaljNr").value;
+      console.log(nrInn);
+      document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
+    }
+}
+
+genConstruct.prototype.getInfo=function(kommNr){
+  for (elementer in this.datasett){
+      if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
+          let out="";
+          out=elementer.toString()+JSON.stringify(this.datasett[elementer]);
+          return out;
+      }
+    }
+  return "error";
+};
+
+function genConstruct(){
+  var objbro = new Object(genConstruct())
+}
+
+
+ function BefolkningConstruct(datasett) {
+    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
+    this.datasett= datasett;
+
+    this.getNames= function () {
+        let arr=[];
+        for (elementer in this.datasett){
+            arr.push(elementer);
+        }
+        return arr;
+    };
+
+
+    this.getIDs=function () {
+        let arr=[];
+        for (elementer in this.datasett){
+            arr.push(this.datasett[elementer]["kommunenummer"])
+        }
+        return arr;
+    };
+
+
+    this.getInfo=function (kommuneNr) {
+        for (elementer in this.datasett){
+            if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
+                let out="";
+                out=elementer.toString()+JSON.stringify(this.datasett[elementer]);
+                return out;
+            }
+        }
+        return "error";
+    }
+}
+ function getDetalj(){
+     let nrInn= document.getElementById("detaljNr").value;
+     console.log(nrInn);
+     document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
+ }
+
+ function getOversikt(){
+         let arr="";
+         for (elementer in befolkObj.datasett){
+            let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]+befolkObj.datasett[elementer]["Menn"]["2018"];
+
+            arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]["kommunenummer"]+"<p>" +
+                "<p>Siste måling av befolkning: "+befolkning+"</p><br>");
+         }
+
+document.getElementById("oversiktData").innerHTML=arr;
+ }
+
+async function onStart() {
+    let sysselsatt;
+    let utdanning;
+    let befolkning;
     try {
-        let utdanning = await getUtdanning();
+         utdanning = await getUtdanning();
         console.log(utdanning);
     } catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
-    let sysselsatt= await getSysselsatte();
-    console.log(sysselsatt);
-
-    let befolkning= await getBefolkning();
-    console.log(befolkning);
-   let befolkningData= new befolkningConstruct(befolkning);
-
-}
-function befolkningConstruct(datasett) {
-    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-    getNames=()=>{
-        let arr=[];
-        for (elementer in datasett){
-            arr.push(elementer);
-            return arr;
-        }
+    try {
+         sysselsatt = await getSysselsatte();
+        console.log(sysselsatt);
     }
 
-    
+    catch(e) {
+        console.log("CAUGHT EXCEPTION", e);
+    }
+
+     befolkning= await getBefolkning();
+     console.log(befolkning);
+     befolkObj= new BefolkningConstruct(befolkning);
+     sysselObj = new sysselsattConstruct(syssel);
+    //console.log(befolkObj.getNames())
+  //  console.log(befolkObj.getInfo("0101"))
+
+
 }
-function sysselsattConstruct(datasett) {
-    
-}
-function utdaninngConstuct(datasett) {
-    
-}
+let befolkObj;
 
 onStart();
