@@ -1,4 +1,5 @@
-body{background-color:grey}
+body{background-color: #c8e6e3
+}
 button{
     background-color: #082caf;
     border: none;
@@ -21,9 +22,17 @@ button:hover{
 }
 footer{
     background-color: aliceblue;
-    position: absolute;
+    position: relative;
     left: 0;
     bottom: 0;
     width: 100%;
     float: bottom;
 }
+#oversiktData{
+    border: 5px dotted #dc272a;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    overflow: scroll;
+}
+

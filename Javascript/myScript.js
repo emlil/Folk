@@ -76,8 +76,8 @@ async function getSysselsatte() {
          for (elementer in befolkObj.datasett){
             let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]+befolkObj.datasett[elementer]["Menn"]["2018"];
 
-            arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]["kommunenummer"]+"<p> <br>" +
-                "<p> siste måling av befolkning: "+befolkning+"</p><br>");
+            arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]["kommunenummer"]+"<p>" +
+                "<p>Siste måling av befolkning: "+befolkning+"</p><br>");
          }
 document.getElementById("oversiktData").innerHTML=arr;
  }
