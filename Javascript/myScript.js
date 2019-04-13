@@ -52,17 +52,28 @@ GenConstruct.prototype.getInfo=function(kommNr){
 }
 
 
- function BefolkningConstruct(datasett) {
+ function befolkningConstruct(datasett) {
     var x = Object.create(GenConstruct.prototype)
     x.getJson(datasett)
 
  }
 
+ function sysselsattConstruct(datasett) {
+    var y = Object.create(GenConstruct.prototype)
+    y.getJson(datasett)
+
+ }
+
+ function utdanningConstuct(datasett) {
+    var z = Object.create(GenConstruct.prototype)
+    z.getJson(datasett)
+
+ }
+
 function onStart(){
-     befolkObj= new BefolkningConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
-    //sysselObj = new sysselsattConstruct(syssel);
-    //console.log(befolkObj.getNames())
-    //console.log(befolkObj.getInfo("0101"))
+     befolkObj= new befolkningConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
+    sysselObj = new sysselsattConstruct("http://wildboy.uib.no/~tpe056/folk/100145.json");
+    utdanningConstuct = new utdanningConstuct("http://wildboy.uib.no/~tpe056/folk/85432.json")
 }
 let befolkObj;
 
