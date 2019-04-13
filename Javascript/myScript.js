@@ -1,34 +1,3 @@
-
-async function getUtdanning() {
-    /*let job =  new Promise(
-      function(resolve, reject) {
-          // Fetch data with json
-        let failed = true;
-        if (failed) {
-            reject("It bork");
-        }
-        resolve("data");
-      }
-    );
-    console.log("HELLO");
-    return job;*/
-    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/85432.json");
-    let data = await call.json();
-    return data;
-}
-
-async function getBefolkning() {
-let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
-   call= await call.json();
-   return call["elementer"];
-}
-
-async function getSysselsatte() {
-    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
-    call=await call.json();
-    return call["elementer"]
-}
-
 function GenConstruct(datasett){
 
 }
@@ -51,7 +20,7 @@ GenConstruct.prototype.getJson=function(url){
   xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200){
       var response = JSON.parse(xhr.responseText);
-      console.log("it work")
+      console.log(response)
     }
   }
   xhr.send();
@@ -84,38 +53,16 @@ GenConstruct.prototype.getInfo=function(kommNr){
 
 
  function BefolkningConstruct(datasett) {
-    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-    this.datasett= datasett;
+    var x = Object.create(GenConstruct.prototype)
+    x.getJson(datasett)
 
  }
 
-async function onStart() {
-    let sysselsatt;
-    let utdanning;
-    let befolkning;
-    try {
-         utdanning = await getUtdanning();
-        console.log(utdanning);
-    } catch(e) {
-        console.log("CAUGHT EXCEPTION", e);
-    }
-    try {
-         sysselsatt = await getSysselsatte();
-        console.log(sysselsatt);
-    }
-
-    catch(e) {
-        console.log("CAUGHT EXCEPTION", e);
-    }
-
-     befolkning= await getBefolkning();
-     console.log(befolkning);
-     befolkObj= new GenConstruct(befolkning);
+function onStart(){
+     befolkObj= new BefolkningConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
     //sysselObj = new sysselsattConstruct(syssel);
     //console.log(befolkObj.getNames())
     //console.log(befolkObj.getInfo("0101"))
-
-
 }
 let befolkObj;
 
