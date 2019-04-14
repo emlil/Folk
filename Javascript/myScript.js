@@ -88,10 +88,13 @@ function sysselsattConstruct(datasett) {
 
   this.sysselSattePros = function(){
     let arr = [];
+    let kommuner = ""
     for (elementer in this.datasett){
-      arr.push(this.datasett[elementer]["Begge kjønn"])
+      kommuner = elementer
+      arr.push(kommuner+ " "+ this.datasett[elementer]["Begge kjønn"]["2018"])
     }
-    return arr;
+    return arr
+
   }
 };
 
