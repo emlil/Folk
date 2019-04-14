@@ -66,7 +66,8 @@ async function getSysselsatte() {
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
                 let out="";
-                out=elementer.toString()+JSON.stringify(this.datasett[elementer]);
+                out=elementer.toString()+JSON.stringify(this.datasett[elementer]
+                  );
                 return out;
             }
         }
@@ -87,16 +88,18 @@ function sysselsattConstruct(datasett) {
   };
 
   this.sysselSattePros = function(){
-    let arr = [];
-    let kommuner = ""
+    let arrBegge = [];
+    let dame = [];
+    let menn = [];
+    let dict = {};
     for (elementer in this.datasett){
-      kommuner = elementer
-      arr.push(kommuner+ " "+ this.datasett[elementer]["Begge kjønn"]["2018"])
+      dict[elementer] = this.datasett[elementer]
+      ["Begge kjønn"]["2018"]
     }
-    return arr
-
+    return dict
   }
 };
+
 
 //getDetlaj Henter data fra html dokumentet og endrer på dataen i
 //detaljData klassen til det get info finner.
@@ -148,14 +151,11 @@ async function onStart() {
      sysselObj = new sysselsattConstruct(syssel)
     //console.log(befolkObj.getNames())
     //console.log(befolkObj.getInfo("0101"))
-
-
-
 }
 
 function utdaninngConstuct(datasett) {
-
 }
+
 let befolkObj;
 
 onStart();
