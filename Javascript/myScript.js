@@ -100,6 +100,18 @@ function SysselsattConstruct(datasett) {
   }
 
 };
+function UtdaninngConstuct(datasett) {
+  this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
+  this.datasett= datasett;
+
+  this.getUtd = function(){
+    let arr = [];
+    for(elementer in this.datasett){
+      arr.push(this.datasett["elementer"])
+    }
+    return arr
+  }
+}
 
 //getDetlaj Henter data fra html dokumentet og endrer på dataen i
 //detaljData klassen til det get info finner.
@@ -152,15 +164,13 @@ async function onStart() {
      console.log(befolkning);
      befolkObj = new BefolkningConstruct(befolkning);
      sysselObj = new SysselsattConstruct(syssel)
-     utdanningObj = new UtdaninngConstuct
+     utdanningObj = new UtdaninngConstuct(utdanning)
     //console.log(befolkObj.getNames())
     //console.log(befolkObj.getInfo("0101"))
 }
 
-function UtdaninngConstuct(datasett) {
-}
-
 let befolkObj;
 let sysselObj;
+let utdanningObj;
 
 onStart();
