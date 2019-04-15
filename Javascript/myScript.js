@@ -65,18 +65,20 @@ async function getSysselsatte() {
     this.getInfo=function (kommuneNr) {
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-                let out="";
-                out=elementer.toString()+"("+kommuneNr+")"
-                +" befolkning: "+JSON.stringify(this.datasett[elementer]
-                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"])
-                return out;
+              out=elementer.toString()+"("+kommuneNr+")"
+              +" befolkning: "+JSON.stringify(this.datasett[elementer]
+              ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"])
+                /*out = {};
+                out[this.datasett[elementer]["kommunenummer"]]=this.datasett[elementer]
+                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]*/
+                return out
             }
         }
         return "error";
     }
 }
 
-function sysselsattConstruct(datasett) {
+function SysselsattConstruct(datasett) {
   this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
   this.datasett= datasett;
 
@@ -91,36 +93,38 @@ function sysselsattConstruct(datasett) {
   this.sysselSattePros = function(kommuneNr){
     let beggeDict = {};
     for (elementer in this.datasett){
-      beggeDict[elementer] = this.datasett[elementer]
-      ["Begge kjønn"]["2018"]
+      beggeDict[this.datasett[elementer]["kommunenummer"]]=
+      this.datasett[elementer]["Begge kjønn"]["2018"]
     }
-    return beggeDict[elementer]
+    return "Sysselsatte: "+beggeDict[kommuneNr]+" %"
   }
 
 };
-
 
 //getDetlaj Henter data fra html dokumentet og endrer på dataen i
 //detaljData klassen til det get info finner.
  function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
      console.log(nrInn);
-     document.getElementById("detaljData").innerHTML=befolkObj.getInfo(nrInn);
+     document.getElementById("detaljData").innerHTML=
+     befolkObj.getInfo(nrInn);
+     document.getElementById("pross").innerHTML=
+     sysselObj.sysselSattePros(nrInn)
  }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
 // menn og kvinner og printer ut dette i oversiktdata klassen i html.
  function getOversikt(){
-         let arr="";
-         for (elementer in befolkObj.datasett){
-            let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]
-            +befolkObj.datasett[elementer]["Menn"]["2018"];
+   let arr="";
+    for (elementer in befolkObj.datasett){
+      let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]
+      +befolkObj.datasett[elementer]["Menn"]["2018"];
 
-            arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]
-            ["kommunenummer"]+"<p>"+
-            "<p>Siste måling av befolkning: "+befolkning+"</p><br>");
-         }
-document.getElementById("oversiktData").innerHTML=arr;
+      arr+=("<p>"+elementer+" "+ befolkObj.datasett[elementer]
+      ["kommunenummer"]+"<p>"+
+      "<p>Siste måling av befolkning: "+befolkning+"</p><br>");
+    }
+    document.getElementById("oversiktData").innerHTML=arr;
  }
 
 
@@ -147,12 +151,13 @@ async function onStart() {
      syssel = await getSysselsatte();
      console.log(befolkning);
      befolkObj = new BefolkningConstruct(befolkning);
-     sysselObj = new sysselsattConstruct(syssel)
+     sysselObj = new SysselsattConstruct(syssel)
+     utdanningObj = new UtdaninngConstuct
     //console.log(befolkObj.getNames())
     //console.log(befolkObj.getInfo("0101"))
 }
 
-function utdaninngConstuct(datasett) {
+function UtdaninngConstuct(datasett) {
 }
 
 let befolkObj;
