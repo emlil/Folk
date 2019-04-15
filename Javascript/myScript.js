@@ -65,14 +65,24 @@ async function getSysselsatte() {
     this.getInfo=function (kommuneNr) {
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-              out=elementer.toString()+"("+kommuneNr+")"
+              /*out=elementer.toString()+"("+kommuneNr+")"
               +" befolkning: "+JSON.stringify(this.datasett[elementer]
               ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"])
-                /*out = {};
+                out = {};
                 out[this.datasett[elementer]["kommunenummer"]]=this.datasett[elementer]
-                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]*/
-                return out
+                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]
+                console.log(out)*/
+                //Usikker på hvordan vi skal løse presentasjon av informasjon.
+
+                let theMath ={}
+                theMath[kommuneNr]=this.datasett[elementer]
+                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]
+                console.log(theMath)
+                return theMath[kommuneNr]
+                //Lager et object med kommunenummer som key og total befolkning
+                //som verdi. Retur verdien her er kun total befolkning.
             }
+
         }
         return "error";
     }
@@ -96,8 +106,10 @@ function SysselsattConstruct(datasett) {
       beggeDict[this.datasett[elementer]["kommunenummer"]]=
       this.datasett[elementer]["Begge kjønn"]["2018"]
     }
-    return "Sysselsatte: "+beggeDict[kommuneNr]+" %"
-  }
+    return beggeDict[kommuneNr]/100
+  }//Lager et objekt med kommunen som key og prosent sysselsatt som value.
+  // Ved den retur verdien som står returneres kun prosenten sysselsatte.
+  //nb! Deler på 100 for å få det i prosent.
 
 };
 function UtdaninngConstuct(datasett) {
@@ -122,7 +134,11 @@ function UtdaninngConstuct(datasett) {
      befolkObj.getInfo(nrInn);
      document.getElementById("pross").innerHTML=
      sysselObj.sysselSattePros(nrInn)
- }
+
+     var quickMafs = sysselObj.sysselSattePros(nrInn)*befolkObj.getInfo(nrInn)
+     document.getElementById("totalSyssel").innerHTML = quickMafs
+ }//variablen quickMafs bruker funksjonene til sysselObj og befolkObj til å
+  //skrive ut antall folk som er i jobb. F.eks: 0.50*1000.
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
 // menn og kvinner og printer ut dette i oversiktdata klassen i html.
