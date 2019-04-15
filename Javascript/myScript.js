@@ -66,8 +66,9 @@ async function getSysselsatte() {
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
                 let out="";
-                out=elementer.toString()+JSON.stringify(this.datasett[elementer]
-                  );
+                out=elementer.toString()+"("+kommuneNr+")"
+                +" befolkning: "+JSON.stringify(this.datasett[elementer]
+                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"])
                 return out;
             }
         }
@@ -87,17 +88,15 @@ function sysselsattConstruct(datasett) {
       return arr;
   };
 
-  this.sysselSattePros = function(){
-    let arrBegge = [];
-    let dame = [];
-    let menn = [];
-    let dict = {};
+  this.sysselSattePros = function(kommuneNr){
+    let beggeDict = {};
     for (elementer in this.datasett){
-      dict[elementer] = this.datasett[elementer]
+      beggeDict[elementer] = this.datasett[elementer]
       ["Begge kjønn"]["2018"]
     }
-    return dict
+    return beggeDict[elementer]
   }
+
 };
 
 
@@ -157,5 +156,6 @@ function utdaninngConstuct(datasett) {
 }
 
 let befolkObj;
+let sysselObj;
 
 onStart();
