@@ -134,7 +134,6 @@ function UtdaninngConstuct(datasett) {
      befolkObj.getInfo(nrInn);
      document.getElementById("pross").innerHTML=
      sysselObj.sysselSattePros(nrInn)
-
      var quickMafs = sysselObj.sysselSattePros(nrInn)*befolkObj.getInfo(nrInn)
      document.getElementById("totalSyssel").innerHTML = quickMafs
  }//variablen quickMafs bruker funksjonene til sysselObj og befolkObj til å
