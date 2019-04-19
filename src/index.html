@@ -1,38 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Saklig Sentral Byrå</title>
     <script type="text/javascript" src="../Javascript/myScript.js"></script>
-    <link rel="stylesheet" type="text/css"href="myCss.css">
+    <link rel="stylesheet" type="text/css" href="myCss.css">
 </head>
 <header id="head"> <button>Introduksjon</button>
     <button onclick="getOversikt()">Oversikt</button>
     <button>Detaljer</button>
     <button>sammenligning</button>
 </header>
-    <div>
-        <div id="intro" class="blokk"><h1>Ssb-statistikk</h1>
+<div>
+    <div id="intro" class="blokk">
+        <h1>Ssb-statistikk</h1>
         <p>Dette er et produkt skapt for å gi deg informasjon om alle komunnenen i norge fra 2007 frem til 2018.<br>
-        <strong>NB:</strong> Vær oppmerksom på at dataene kan inneholde feil <br>
+            <strong>NB:</strong> Vær oppmerksom på at dataene kan inneholde feil <br>
             <a href="http://data.ssb.no/api/v0/dataset/104857?lang=no">Befolkning</a>
             <a href="http://data.ssb.no/api/v0/dataset/100145?lang=no">Sysselsatte</a>
             <a href="http://data.ssb.no/api/v0/dataset/85432?lang=no">Utdanningsss</a>
-        </p></div>
-
-
-        <div id="oversikt" class="blokk"><div id="oversiktData"></div></div>
-        <div id="detalj" class="blokk"><input id="detaljNr" type="text" value="1820"/>
-            <button onclick="getDetalj();">Søk</button> <p id="detaljData">
-            <br>
         </p>
-            <div id="pross"></div>
-            <div id="totalSyssel"></div>
-
-        </div>
-        <div id="sammenligning" class="blokk"></div>
     </div>
 
-<footer><p>Dette er en oppgavebesvarelse i faget <strong>INFO134</strong></p></footer>
+
+    <div id="oversikt" class="blokk">
+        <div id="oversiktData"></div>
+    </div>
+    <div id="detalj" class="blokk">
+        <input id="detaljNr" type="text" value="0101" />
+        <button onclick="getDetalj();">Søk</button>
+        <div>
+            <div id="detaljData"></div>
+            <div id="pross"></div>
+            <div id="totalSyssel"></div>
+        </div>
+        <div id="historisk-utvikling">
+            
+        </div>
+    </div>
+    <div id="sammenligning" class="blokk"></div>
+</div>
+
+<footer>
+    <p>Dette er en oppgavebesvarelse i faget <strong>INFO134</strong></p>
+</footer>
 </body>
+
 </html>

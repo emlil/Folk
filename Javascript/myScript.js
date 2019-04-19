@@ -62,27 +62,27 @@ async function getSysselsatte() {
 //getInfo mottar et input i fra brukeren, thrower error hvis kommunenummeret
 //ikke eksisterer i objectet. Den returnerer en string med elementet hvis den
 //finner det.
-;
     this.getInfo=function (kommuneNr) {
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-
-              out.push(elementer.toString()+"("+kommuneNr+")"
+              /*out=elementer.toString()+"("+kommuneNr+")"
               +" befolkning: "+JSON.stringify(this.datasett[elementer]
-              ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]));
-
-                out.push([this.datasett[elementer]["kommunenummer"]]=this.datasett[elementer]
-                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]);
-                console.log(out);
-                return out;
+              ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"])
+                out = {};
+                out[this.datasett[elementer]["kommunenummer"]]=this.datasett[elementer]
+                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]
+                console.log(out)*/
                 //Usikker på hvordan vi skal løse presentasjon av informasjon.
+                
 
-                /*let theMath ={};
-                theMath[kommuneNr]=this.datasett[elementer]
-                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"];
-                console.log(theMath);
-                return theMath[kommuneNr]
-                */
+                //Oppretter et objekt for valgte kommune slik at vi kan ta ut infoen etter objektet er returnert.
+                //Slik kan vi presentere dataen slik vi ønsker
+                let thisKommune ={}
+                thisKommune.befolkning=this.datasett[elementer]["Kvinner"]["2018"]+this.datasett[elementer]["Menn"]["2018"]
+                thisKommune.navn=elementer;
+                thisKommune.nummer=kommuneNr;
+                console.log(thisKommune)
+                return thisKommune;
                 //Lager et object med kommunenummer som key og total befolkning
                 //som verdi. Retur verdien her er kun total befolkning.
             }
@@ -104,18 +104,22 @@ function SysselsattConstruct(datasett) {
       return arr;
   };
 
-  this.sysselSattePros = function(kommuneNr){
-    let beggeDict = {};
+  this.sysselSattePros = function(kommuneNavn){
+    /*let beggeDict = {};
     for (elementer in this.datasett){
       beggeDict[this.datasett[elementer]["kommunenummer"]]=
       this.datasett[elementer]["Begge kjønn"]["2018"]
-    }
-    return beggeDict[kommuneNr]
+    }*/
+
+    //bruker kommunenavn for å hente ut data.
+    var prosent=(this.datasett[kommuneNavn]["Begge kjønn"]["2018"]);
+    return prosent;
+   // return beggeDict[kommuneNr]
   }//Lager et objekt med kommunen som key og prosent sysselsatt som value.
   // Ved den retur verdien som står returneres kun prosenten sysselsatte.
   //nb! Deler på 100 for å få det i prosent.
 
-}
+};
 function UtdaninngConstuct(datasett) {
   this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
   this.datasett= datasett;
@@ -133,17 +137,17 @@ function UtdaninngConstuct(datasett) {
 //detaljData klassen til det get info finner.
  function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
-
-        let detaljdata=befolkObj.getInfo(nrInn);
-     document.getElementById("detaljData").innerHTML=detaljdata;
-        let sysselsatt=sysselObj.sysselSattePros(nrInn);
-     document.getElementById("pross").innerHTML=sysselsatt;
-     console.log(detaljdata+"  "+sysselsatt);
-
-     var quickMafs = sysselObj.sysselSattePros(nrInn)/befolkObj.getInfo(nrInn);
-     document.getElementById("totalSyssel").innerHTML = quickMafs
- }//variablen quickMafs bruker funksjonene til sysselObj og befolkObj til å
-  //skrive ut antall folk som er i jobb. F.eks: 0.50*1000.
+  
+    //Oppretter obbjekt for kommunen det skal hentes data fra 
+    var kommune=befolkObj.getInfo(nrInn);
+    document.getElementById("detaljData").innerHTML=kommune['navn']+" ("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
+    
+    kommune.prosent=sysselObj.sysselSattePros(kommune['navn'])
+    document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent'];
+    
+    kommune.antallSysselsatt=Math.floor((kommune['prosent']/100)*kommune['befolkning']);
+    document.getElementById("totalSyssel").innerHTML ="Totalt antall sysselsatt: "+kommune['antallSysselsatt'];
+ }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
 // menn og kvinner og printer ut dette i oversiktdata klassen i html.
@@ -189,7 +193,6 @@ async function onStart() {
     //console.log(befolkObj.getNames())
     //console.log(befolkObj.getInfo("0101"))
 }
-let out=[];
 
 let befolkObj;
 let sysselObj;
