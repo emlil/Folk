@@ -123,13 +123,18 @@ function UtdaninngConstuct(datasett) {
     return kommune;
   }
 }
+//funksjon for å fremvise data
+function fremvis(loc,object){
+
+    document.getElementById(loc).innerHTML=object;
+}
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
   
     //Oppretter obbjekt for kommunen det skal hentes data fra 
     var kommune=befolkObj.getInfo(nrInn);
-    document.getElementById("detaljData").innerHTML=kommune['navn']+" ("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
+   fremvis("detaljData",kommune['navn']+" ("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning']);
     
     kommune.prosent=sysselObj.sysselSattePros(kommune['navn'])
     document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent']+"%";
