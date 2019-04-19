@@ -65,17 +65,7 @@ async function getSysselsatte() {
     this.getInfo=function (kommuneNr) {
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-              /*out=elementer.toString()+"("+kommuneNr+")"
-              +" befolkning: "+JSON.stringify(this.datasett[elementer]
-              ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"])
-                out = {};
-                out[this.datasett[elementer]["kommunenummer"]]=this.datasett[elementer]
-                ["Kvinner"]["2018"]+this.datasett[elementer]["Kvinner"]["2018"]
-                console.log(out)*/
-                //Usikker på hvordan vi skal løse presentasjon av informasjon.
-                
-
-                //Oppretter et objekt for valgte kommune slik at vi kan ta ut infoen etter objektet er returnert.
+             //Oppretter et objekt for valgte kommune slik at vi kan ta ut infoen etter objektet er returnert.
                 //Slik kan vi presentere dataen slik vi ønsker
                 let thisKommune ={}
                 thisKommune.befolkning=this.datasett[elementer]["Kvinner"]["2018"]+this.datasett[elementer]["Menn"]["2018"]
@@ -83,8 +73,7 @@ async function getSysselsatte() {
                 thisKommune.nummer=kommuneNr;
                 console.log(thisKommune)
                 return thisKommune;
-                //Lager et object med kommunenummer som key og total befolkning
-                //som verdi. Retur verdien her er kun total befolkning.
+              
             }
 
         }
@@ -105,19 +94,10 @@ function SysselsattConstruct(datasett) {
   };
 
   this.sysselSattePros = function(kommuneNavn){
-    /*let beggeDict = {};
-    for (elementer in this.datasett){
-      beggeDict[this.datasett[elementer]["kommunenummer"]]=
-      this.datasett[elementer]["Begge kjønn"]["2018"]
-    }*/
-
     //bruker kommunenavn for å hente ut data.
-    var prosent=(this.datasett[kommuneNavn]["Begge kjønn"]["2018"]);
+    var prosent=(this.datasett[kommuneNavn]["Begge kjønn"]["2018"]).toFixed(2);
     return prosent;
-   // return beggeDict[kommuneNr]
-  }//Lager et objekt med kommunen som key og prosent sysselsatt som value.
-  // Ved den retur verdien som står returneres kun prosenten sysselsatte.
-  //nb! Deler på 100 for å få det i prosent.
+  }
 
 };
 function UtdaninngConstuct(datasett) {
@@ -131,11 +111,20 @@ function UtdaninngConstuct(datasett) {
     }
     return arr
   }
-}
 
-//getDetlaj Henter data fra html dokumentet og endrer på dataen i
-//detaljData klassen til det get info finner.
- function getDetalj(){
+
+  this.getHoyUtdanning=function(kommune){
+    //antar at høyere utdanning kun er 03a og 04a
+    //SE ØVE OM DENNE MATTEN E RIKTIG
+    kommune.utdanningProsent =(this.datasett["elementer"][kommune.navn]['03a']["Kvinner"]['2017']+this.datasett["elementer"][kommune.navn]['03a']["Menn"]['2017'])/2;
+    kommune.utdanningProsent+=((this.datasett["elementer"][kommune.navn]['04a']["Kvinner"]['2017']+this.datasett["elementer"][kommune.navn]['04a']["Menn"]['2017'])/2);
+    kommune.utdanningProsent=kommune.utdanningProsent.toFixed(2)
+    kommune.utdanningAntall=kommune.befolkning*(kommune.utdanningProsent)/100
+    return kommune;
+  }
+}
+//getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
+function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
   
     //Oppretter obbjekt for kommunen det skal hentes data fra 
@@ -143,10 +132,14 @@ function UtdaninngConstuct(datasett) {
     document.getElementById("detaljData").innerHTML=kommune['navn']+" ("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
     
     kommune.prosent=sysselObj.sysselSattePros(kommune['navn'])
-    document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent'];
+    document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent']+"%";
     
+    //bruker Math.floor her for å få hele tall uten desimal fordi kun hele mennesker jobber
     kommune.antallSysselsatt=Math.floor((kommune['prosent']/100)*kommune['befolkning']);
     document.getElementById("totalSyssel").innerHTML ="Totalt antall sysselsatt: "+kommune['antallSysselsatt'];
+
+    kommune=utdanningObj.getHoyUtdanning(kommune);
+    document.getElementById("utdanning").innerHTML="Prosent utdanning "+kommune.utdanningProsent+"</br> Antall utdannet: "+kommune.utdanningAntall;
  }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
