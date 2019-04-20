@@ -1,5 +1,16 @@
-body{background-color: #c8e6e3
+body{background-color: #c8e6e3;
+   
 }
+/* 
+Css og html for å få sider som som vises/Fjernes
+https://www.w3schools.com/howto/howto_js_expanding_grid.asp
+*/
+.content{
+    
+    margin: auto;
+    padding: 10px;
+}
+
 button{
     background-color: #082caf;
     border: none;
@@ -30,9 +41,12 @@ footer{
 }
 .blokk{
     border: 5px solid;
+    min-height: 100px;
+    width: 50%
+    
 }
 #oversiktData{
-    border: 5px dotted #dc272a;
+    
     width: 500px;
     height: 500px;
     overflow: hidden;

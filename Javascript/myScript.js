@@ -59,8 +59,8 @@ async function getSysselsatte() {
         return arr;
     };
 
-//getInfo mottar et input i fra brukeren, thrower error hvis kommunenummeret
-//ikke eksisterer i objectet. Den returnerer en string med elementet hvis den
+//getInfo mottar et input i fra brukeren, thrower error hvis kommunenummeret eller år
+//ikke eksisterer i datasettet. Den returnerer en string med elementet hvis den
 //finner det.
     this.getInfo=function (kommuneNr,aar) {
         for (elementer in this.datasett){
@@ -145,7 +145,7 @@ function getDetalj(){
  }
 
  //funksjon som settter sammen data, og bygger tabell
- function historiskUtviklingTabell(kommune){
+ function historiskUtviklingTabell(kommuneNr){
     let tabell= "<table><tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
     //oppretter en tabell. plasserer 4 arrays inni dette. en for hvert sett med verdier. Fordi de kun finnes verdier i tidsrommet 2007-2017 er det disse verdiene vi vil fremvise
     let arr=[];
@@ -154,8 +154,14 @@ function getDetalj(){
       aarArray.push(index);
     }
     arr.push(aarArray);
+    let befolkningArray=[];
+    for (let index = 2007; index <= 2017; index++) {
+      let num=befolkObj.getInfo(kommuneNr,index)
+      befolkningArray.push(num['befolkning']);
+    }
+    arr.push(befolkningArray);
     
-    
+
 
     tabell+="</table>"
  }
