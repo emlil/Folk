@@ -7,12 +7,19 @@
     <script type="text/javascript" src="../Javascript/myScript.js"></script>
     <link rel="stylesheet" type="text/css" href="myCss.css">
 </head>
-<header id="head"> <button>Introduksjon</button>
+
+<header id="head">
+    <h1> INFO134 - Semesteroppgave vår 2019 </h1>
+    <button>Introduksjon</button>
     <button onclick="getOversikt()">Oversikt</button>
     <button>Detaljer</button>
     <button>sammenligning</button>
 </header>
+
+<!-- scoop -->
 <div>
+
+  <!-- scoop -->
     <div id="intro" class="blokk">
         <h1>Ssb-statistikk</h1>
         <p>Dette er et produkt skapt for å gi deg informasjon om alle komunnenen i norge fra 2007 frem til 2018.<br>
@@ -23,10 +30,12 @@
         </p>
     </div>
 
-
+    <!-- div field for oversikt -->
     <div id="oversikt" class="blokk">
         <div id="oversiktData"></div>
     </div>
+
+    <!-- div field for detaljer -->
     <div id="detalj" class="blokk">
         <input id="detaljNr" type="text" value="0101" />
         <button onclick="getDetalj();">Søk</button>
@@ -39,7 +48,13 @@
         <div id="historisk-utvikling">
         </div>
     </div>
-    <div id="sammenligning" class="blokk"></div>
+
+    <!-- div field for sammenligning -->
+    <div id="sammenligning" class="blokk">
+      <div id="kommune1"></div>
+      <div id="kommune2"></div>
+    </div>
+
 </div>
 
 <footer>

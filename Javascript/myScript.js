@@ -73,7 +73,7 @@ async function getSysselsatte() {
                 thisKommune.nummer=kommuneNr;
                 console.log(thisKommune)
                 return thisKommune;
-              
+
             }
 
         }
@@ -126,14 +126,14 @@ function UtdaninngConstuct(datasett) {
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
-  
-    //Oppretter obbjekt for kommunen det skal hentes data fra 
+
+    //Oppretter obbjekt for kommunen det skal hentes data fra
     let kommune=befolkObj.getInfo(nrInn,2018);
     document.getElementById("detaljData").innerHTML=kommune['navn']+" ("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
-    
+
     kommune.prosent=sysselObj.sysselSattePros(kommune['navn'],2018)
     document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent']+"%";
-    
+
     //bruker Math.floor her for å få hele tall uten desimal fordi kun hele mennesker jobber
     kommune.antallSysselsatt=Math.floor((kommune['prosent']/100)*kommune['befolkning']);
     document.getElementById("totalSyssel").innerHTML ="Totalt antall sysselsatt: "+kommune['antallSysselsatt'];
@@ -154,8 +154,8 @@ function getDetalj(){
       aarArray.push(index);
     }
     arr.push(aarArray);
-    
-    
+
+
 
     tabell+="</table>"
  }
@@ -200,6 +200,7 @@ async function onStart() {
      sysselObj = new SysselsattConstruct(syssel)
      utdanningObj = new UtdaninngConstuct(utdanning)
 }
+
 
 let befolkObj;
 let sysselObj;
