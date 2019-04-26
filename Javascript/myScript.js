@@ -125,6 +125,8 @@ function UtdaninngConstuct(datasett) {
 
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 function getDetalj(){
+
+
      let nrInn= document.getElementById("detaljNr").value;
 
     //Oppretter obbjekt for kommunen det skal hentes data fra
@@ -159,10 +161,20 @@ function getDetalj(){
 
     tabell+="</table>"
  }
+ function getIntro() {
+
+   showBox("intro");
+   //hideAllDiv();
+   //document.getElementById("intro").className = "showBox";
+ }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
 // menn og kvinner og printer ut dette i oversiktdata klassen i html.
  function getOversikt(){
+   //hideAllBox();
+  // document.getElementById("oversikt").className = "showBox";
+   //document.getElementById("oversiktData").className = "showBox";
+
    let arr="";
     for (elementer in befolkObj.datasett){
       let befolkning=befolkObj.datasett[elementer]["Kvinner"]["2018"]
@@ -200,6 +212,29 @@ async function onStart() {
      sysselObj = new SysselsattConstruct(syssel)
      utdanningObj = new UtdaninngConstuct(utdanning)
 }
+
+// Funksjon for gjemming av alle div med unntag av @exceptionID
+function hideAllDiv () {
+
+  let allDiv = document.getElementsByTagName("div");
+  var i;
+  for (i=0; i < allDiv.length; i++) {
+    allDiv[i].className = "hideBox";
+  }
+}
+//Funksjon som viser div med @id
+function showBox (id) {
+  document.getElementById(id).className = "showBox";
+  var allDiv = document.getElementsByTagName("div");
+  var i;
+  for (i=0; i < allDiv.length; i++) {
+    if (allDiv[i].id != id && allDiv[i].id != "noHide") {
+    allDiv[i].className = "hideBox";
+    }
+  }
+  console.log(document.getElementById(id).classList);
+}
+
 
 
 let befolkObj;

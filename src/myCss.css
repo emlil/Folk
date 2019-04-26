@@ -28,9 +28,6 @@ footer {
     width: 100%;
     float: bottom;
 }
-.blokk {
-    border: 5px solid;
-}
 #oversiktData{
     border: 5px dotted #dc272a;
     width: 500px;
@@ -39,9 +36,10 @@ footer {
     overflow: auto;
 }
 
-.allBox {
-  display: none;
-}
-.displayedBox {
+.showBox {
   display: flex;
+}
+
+.hideBox {
+  display: none;
 }

@@ -10,17 +10,16 @@
 
 <header id="head">
     <h1> INFO134 - Semesteroppgave vår 2019 </h1>
-    <button>Introduksjon</button>
+    <button onClick="getIntro()">Introduksjon</button>
     <button onclick="getOversikt()">Oversikt</button>
     <button>Detaljer</button>
     <button>sammenligning</button>
 </header>
 
 <!-- scoop -->
-<div>
-
+<div id="noHide">
   <!-- scoop -->
-    <div id="intro" class="blokk">
+    <div id="intro" class="hideBox">
         <h1>Ssb-statistikk</h1>
         <p>Dette er et produkt skapt for å gi deg informasjon om alle komunnenen i norge fra 2007 frem til 2018.<br>
             <strong>NB:</strong> Vær oppmerksom på at dataene kan inneholde feil <br>
@@ -31,12 +30,12 @@
     </div>
 
     <!-- div field for oversikt -->
-    <div id="oversikt" class="blokk">
+    <div id="oversikt" class="hideBox">
         <div id="oversiktData"></div>
     </div>
 
     <!-- div field for detaljer -->
-    <div id="detalj" class="blokk">
+    <div id="detalj" class="hideBox">
         <input id="detaljNr" type="text" value="0101" />
         <button onclick="getDetalj();">Søk</button>
         <div>
@@ -50,7 +49,7 @@
     </div>
 
     <!-- div field for sammenligning -->
-    <div id="sammenligning" class="blokk">
+    <div id="sammenligning" class="hideBox">
       <div id="kommune1"></div>
       <div id="kommune2"></div>
     </div>
