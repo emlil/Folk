@@ -84,7 +84,7 @@ async function getSysselsatte() {
                 thisKommune.nummer=kommuneNr;
                 console.log(thisKommune);
                 return thisKommune;
-              
+
             }
 
         }
@@ -142,14 +142,14 @@ function UtdaninngConstuct(datasett) {
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
-  
-    //Oppretter obbjekt for kommunen det skal hentes data fra 
+
+    //Oppretter obbjekt for kommunen det skal hentes data fra
     let kommune=befolkObj.getInfo(nrInn,2018);
     document.getElementById("detaljData").innerHTML="<strong>"+kommune['navn']+"</strong>("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
-    
+
     kommune.prosent=sysselObj.sysselSattePros(kommune['navn'],2018);
     document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent']+"%";
-    
+
     //bruker Math.floor her for å få hele tall uten desimal fordi kun hele mennesker jobber
     kommune.antallSysselsatt=Math.floor((kommune['prosent']/100)*kommune['befolkning']);
     document.getElementById("totalSyssel").innerHTML ="Totalt antall sysselsatt: "+kommune['antallSysselsatt'];
@@ -208,6 +208,12 @@ function getDetalj(){
         //setter tabell inn i html
     document.getElementById("historisk-utvikling").innerHTML=tabell;
  }
+ function getIntro() {
+
+   showBox("intro");
+   //hideAllDiv();
+   //document.getElementById("intro").className = "showBox";
+ }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
 // menn og kvinner og printer ut dette i oversiktdata klassen i html.
@@ -243,6 +249,30 @@ async function onStart() {
         console.log("CAUGHT EXCEPTION", e);
     }
 }
+
+// Funksjon for gjemming av alle div med unntag av @exceptionID
+function hideAllDiv () {
+
+  let allDiv = document.getElementsByTagName("div");
+  var i;
+  for (i=0; i < allDiv.length; i++) {
+    allDiv[i].className = "hideBox";
+  }
+}
+//Funksjon som viser div med @id
+function showBox (id) {
+  document.getElementById(id).className = "showBox";
+  var allDiv = document.getElementsByTagName("div");
+  var i;
+  for (i=0; i < allDiv.length; i++) {
+    if (allDiv[i].id != id && allDiv[i].id != "noHide") {
+    allDiv[i].className = "hideBox";
+    }
+  }
+  console.log(document.getElementById(id).classList);
+}
+
+
 
 let befolkObj;
 let sysselObj;
