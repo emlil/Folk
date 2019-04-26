@@ -202,6 +202,7 @@ async function onStart() {
      utdanningObj = new UtdaninngConstuct(utdanning)
 }
 
+
 let befolkObj;
 let sysselObj;
 let utdanningObj;
