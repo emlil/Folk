@@ -226,28 +226,22 @@ function getDetalj(){
 
 
 async function onStart() {
-    let sysselsatt;
-    let utdanning;
-    let befolkning;
     try {
-         utdanning = await getUtdanning();
-        console.log(utdanning);
-    } catch(e) {
-        console.log("CAUGHT EXCEPTION", e);
-    }
-    try {
-         sysselsatt = await getSysselsatte();
-        console.log(sysselsatt);
-    }
-    catch(e) {
-        console.log("CAUGHT EXCEPTION", e);
-    }
-     befolkning = await getBefolkning();
+    let utdanning = await getUtdanning();
+    console.log(utdanning);
+
+    let sysselsatt = await getSysselsatte();
+    console.log(sysselsatt);
+     let befolkning = await getBefolkning();
      syssel = await getSysselsatte();
      console.log(befolkning);
      befolkObj = new BefolkningConstruct(befolkning);
      sysselObj = new SysselsattConstruct(syssel)
      utdanningObj = new UtdaninngConstuct(utdanning)
+    }
+    catch(e) {
+        console.log("CAUGHT EXCEPTION", e);
+    }
 }
 
 let befolkObj;
