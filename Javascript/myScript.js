@@ -157,12 +157,11 @@ function getDetalj(){
     kommune=utdanningObj.getHoyUtdanning(kommune,2017);
     document.getElementById("utdanning").innerHTML="Prosent utdanning "+kommune.utdanningProsent+"</br> Antall utdannet: "+kommune.utdanningAntall;
 
-    //historiskUtviklingTabell(kommune['nummer'])
+    historiskUtviklingTabell(kommune['nummer'],kommune['navn'])
  }
 
  //funksjon som settter sammen data, og bygger tabell
  function historiskUtviklingTabell(kommuneNummer,kommuneNavn){
-    let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
     //oppretter en tabell. plasserer 4 arrays inni dette. en for hvert sett med verdier. Fordi de kun finnes verdier i tidsrommet 2007-2017 er det disse verdiene vi vil fremvise
     let arr=[];
     let aarArray=[];
@@ -175,7 +174,7 @@ function getDetalj(){
     //lager en array til hvert datasett
      //bruker map funksjonen på aarArray for å enkelt gå gjennom de aktuelle verdiene for hvert sett.
     let befolkArr=[];
-        aarArray.map( aar=>befolkArr.push(befolkObj.getFolketallAar(kommuneNummer.toString(),aar)));
+        aarArray.map( aar=>befolkArr.push(befolkObj.getFolketallAar(kommuneNummer,aar)));
      arr.push(befolkArr);
 
      let sysselsettArr=[];
@@ -185,8 +184,27 @@ function getDetalj(){
     let utdanningArr=[];
         aarArray.map(aar=>utdanningArr.push(utdanningObj.tabellgetUtdanningProsent(kommuneNavn,aar)));
         arr.push(utdanningArr);
-     return arr;
-   // tabell+="</table>"
+
+     tabellFrickeren(arr)
+ }
+ function tabellFrickeren(arr) {
+     let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
+    let utdanning=arr.pop();
+    let sysselsatt=arr.pop();
+    let befolkning=arr.pop();
+    let aarstall=arr.pop();
+
+    while(utdanning.length>=1){
+        tabell+=nextTabellLine(utdanning.pop(),sysselsatt.pop(),befolkning.pop(),aarstall.pop());
+
+    }
+     tabell+="</table>";
+     function nextTabellLine(utdanning,sysselsatt,befolkning,aarstall){
+
+         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
+     }
+
+    document.getElementById("historisk-utvikling").innerHTML=tabell;
  }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
