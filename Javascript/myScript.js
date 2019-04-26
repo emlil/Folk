@@ -157,11 +157,11 @@ function getDetalj(){
     kommune=utdanningObj.getHoyUtdanning(kommune,2017);
     document.getElementById("utdanning").innerHTML="Prosent utdanning "+kommune.utdanningProsent+"</br> Antall utdannet: "+kommune.utdanningAntall;
 
-    historiskUtviklingTabell(kommune['nummer'],kommune['navn'])
+    historiskUtvikling(kommune['nummer'],kommune['navn'])
  }
 
  //funksjon som settter sammen data, og bygger tabell
- function historiskUtviklingTabell(kommuneNummer,kommuneNavn){
+ function historiskUtvikling(kommuneNummer,kommuneNavn){
     //oppretter en tabell. plasserer 4 arrays inni dette. en for hvert sett med verdier. Fordi de kun finnes verdier i tidsrommet 2007-2017 er det disse verdiene vi vil fremvise
     let arr=[];
     let aarArray=[];
@@ -187,6 +187,7 @@ function getDetalj(){
 
      tabellFrickeren(arr)
  }
+ //Funksjon som setter opp tabellen for historisk data
  function tabellFrickeren(arr) {
      let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
     let utdanning=arr.pop();
@@ -199,11 +200,12 @@ function getDetalj(){
 
     }
      tabell+="</table>";
+    //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
      function nextTabellLine(utdanning,sysselsatt,befolkning,aarstall){
 
          return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
      }
-
+        //setter tabell inn i html
     document.getElementById("historisk-utvikling").innerHTML=tabell;
  }
 
