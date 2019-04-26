@@ -59,7 +59,7 @@ GenConstruct.prototype.getInfo=function(kommNr){
  }
 
 function onStart(){
-     befolkObj= new befolkningConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
+    befolkObj= new befolkningConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
     sysselObj = new sysselsattConstruct("http://wildboy.uib.no/~tpe056/folk/100145.json");
     utdanningConstuct = new utdanningConstuct("http://wildboy.uib.no/~tpe056/folk/85432.json")
 }
