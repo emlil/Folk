@@ -60,7 +60,7 @@ async function getSysselsatte() {
     };
 
 //getInfo mottar et input i fra brukeren, thrower error hvis kommunenummeret
-//ikke eksisterer i objectet. Den returnerer en string med elementet hvis den
+//ikke eksisterer i objektet. Den returnerer en string med elementet hvis den
 //finner det.
     this.getInfo=function (kommuneNr,aar) {
         for (elementer in this.datasett){
@@ -73,7 +73,7 @@ async function getSysselsatte() {
                 thisKommune.nummer=kommuneNr;
                 console.log(thisKommune)
                 return thisKommune;
-              
+
             }
 
         }
@@ -126,14 +126,14 @@ function UtdaninngConstuct(datasett) {
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
-  
-    //Oppretter obbjekt for kommunen det skal hentes data fra 
+
+    //Oppretter obbjekt for kommunen det skal hentes data fra
     let kommune=befolkObj.getInfo(nrInn,2018);
     document.getElementById("detaljData").innerHTML=kommune['navn']+" ("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
-    
+
     kommune.prosent=sysselObj.sysselSattePros(kommune['navn'],2018)
     document.getElementById("pross").innerHTML="Prosent sysselsetting: "+kommune['prosent']+"%";
-    
+
     //bruker Math.floor her for å få hele tall uten desimal fordi kun hele mennesker jobber
     kommune.antallSysselsatt=Math.floor((kommune['prosent']/100)*kommune['befolkning']);
     document.getElementById("totalSyssel").innerHTML ="Totalt antall sysselsatt: "+kommune['antallSysselsatt'];
@@ -147,15 +147,16 @@ function getDetalj(){
  //funksjon som settter sammen data, og bygger tabell
  function historiskUtviklingTabell(kommune){
     let tabell= "<table><tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
-    //oppretter en tabell. plasserer 4 arrays inni dette. en for hvert sett med verdier. Fordi de kun finnes verdier i tidsrommet 2007-2017 er det disse verdiene vi vil fremvise
+    //oppretter en tabell. plasserer 4 arrays inni dette. en for hvert sett med verdier.
+    //Fordi de kun finnes verdier i tidsrommet 2007-2017 er det disse verdiene vi vil fremvise
     let arr=[];
     let aarArray=[];
     for (let index = 2007; index <= 2017; index++) {
       aarArray.push(index);
     }
     arr.push(aarArray);
-    
-    
+
+
 
     tabell+="</table>"
  }
