@@ -1,152 +1,152 @@
-//Henter Utdanning(JSON) fra wilbody
-async function getUtdanning() {
-    /*let job =  new Promise(
-      function(resolve, reject) {
-          // Fetch data with json
-        let failed = true;
-        if (failed) {
-            reject("It bork");
-        }
-
-        resolve("data");
-      }
-    );
-
-    console.log("HELLO");
-
-    return job;*/
-    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/85432.json");
-    let data = await call.json();
-    return data;
-}
-
-//Henter Befolkning(JSON) fra wildboy
-//(fetch er ES6, la oss spørre Truls om dette)
-async function getBefolkning() {
-let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
-   call= await call.json();
-return call["elementer"];
-}
-
-//Henter Sysselsatte(JSON) fra Wildboy
-async function getSysselsatte() {
-    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
-    call=await call.json();
-    return call["elementer"]
-}
-
-//Konstruktor, mottar object fra getBefolkning(JSON)
- function BefolkningConstruct(datasett) {
-    this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-    this.datasett= datasett;
-     this.getName=function (kommuneNr) {
-         for (elementer in this.datasett) {
-             if (this.datasett[elementer]["kommunenummer"] === kommuneNr) {
-                 return elementer;
-             }
-         }
-     };
-     this.getNummer=function (navn) {
-       return this.datasett[navn]["kommunenummer"];
-     };
-//getNames funkjsonen lager en liste og legger til elementer funnet i datasett
-    this.getNames= function () {
-        let arr=[];
-        for (elementer in this.datasett){
-            arr.push(elementer);
-        }
-        return arr;
-    };
-
-//getID funkjsonen lager en liste og legger til alle objectene som
-//har kommunenummer i seg
-    this.getIDs=function () {
-        let arr=[];
-        for (elementer in this.datasett){
-            arr.push(this.datasett[elementer]["kommunenummer"])
-        }
-        return arr;
-    };
-
-     this.getFolketallAar=function (kommuneNr,aar) {
-         for (elementer in this.datasett){
-             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-                 console.log();
-                 return this.datasett[elementer]["Kvinner"][aar]+this.datasett[elementer]["Menn"][aar];
-             }
-
-         }
-         return "error";
-     };
-
-//getInfo mottar et input i fra brukeren, thrower error hvis kommunenummeret
-//ikke eksisterer i objectet. Den returnerer en string med elementet hvis den
-//finner det.
-    this.getInfo=function (kommuneNr,aar) {
-        for (elementer in this.datasett){
-            if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
-             //Oppretter et objekt for valgte kommune slik at vi kan ta ut infoen etter objektet er returnert.
-                //Slik kan vi presentere dataen slik vi ønsker
-                let thisKommune ={};
-                thisKommune.befolkning=this.datasett[elementer]["Kvinner"][aar]+this.datasett[elementer]["Menn"][aar];
-                thisKommune.navn=elementer;
-                thisKommune.nummer=kommuneNr;
-                console.log(thisKommune);
-                return thisKommune;
-              
+    //Henter Utdanning(JSON) fra wilbody
+    async function getUtdanning() {
+        /*let job =  new Promise(
+          function(resolve, reject) {
+              // Fetch data with json
+            let failed = true;
+            if (failed) {
+                reject("It bork");
             }
 
-        }
-        return "error";
-    };
-}
+            resolve("data");
+          }
+        );
 
-function SysselsattConstruct(datasett) {
-  this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
-  this.datasett= datasett;
+        console.log("HELLO");
 
-  this.getNames= function () {
-      let arr=[];
-      for (elementer in this.datasett){
-          arr.push(elementer);
-      }
-      return arr;
-  };
-
-  this.sysselSattePros = function(kommuneNavn,aar){
-    //bruker kommunenavn for å hente ut data.
-      return (this.datasett[kommuneNavn]["Begge kjønn"][aar]).toFixed(2);
-  }
-
-
-};
-function UtdaninngConstuct(datasett) {
-  this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
-  this.datasett= datasett;
-
-  this.getUtd = function(){
-    let arr = [];
-    for(elementer in this.datasett){
-      arr.push(this.datasett["elementer"])
+        return job;*/
+        let call = await fetch("http://wildboy.uib.no/~tpe056/folk/85432.json");
+        let data = await call.json();
+        return data;
     }
-    return arr
-  };
 
-  this.getHoyUtdanning=function(kommune,aar){
-    //antar at høyere utdanning kun er 03a og 04a
-    //SE ØVE OM DENNE MATTEN E RIKTIG
-    kommune.utdanningProsent =(this.datasett["elementer"][kommune.navn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['03a']["Menn"][aar])/2;
-    kommune.utdanningProsent+=((this.datasett["elementer"][kommune.navn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['04a']["Menn"][aar])/2);
-    kommune.utdanningProsent=kommune.utdanningProsent.toFixed(2);
-    kommune.utdanningAntall=kommune.befolkning*(kommune.utdanningProsent)/100;
-    return kommune;
-  };
-  this.tabellgetUtdanningProsent=function (kommuneNavn, aar) {
-      let utdanning1=(this.datasett["elementer"][kommuneNavn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['03a']["Menn"][aar])/2;
-       utdanning1+=((this.datasett["elementer"][kommuneNavn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['04a']["Menn"][aar])/2);
-      return utdanning1.toFixed(2);
-  }
-}
+    //Henter Befolkning(JSON) fra wildboy
+    //(fetch er ES6, la oss spørre Truls om dette)
+    async function getBefolkning() {
+    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
+       call= await call.json();
+    return call["elementer"];
+    }
+
+    //Henter Sysselsatte(JSON) fra Wildboy
+    async function getSysselsatte() {
+        let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
+        call=await call.json();
+        return call["elementer"]
+    }
+
+    //Konstruktor, mottar object fra getBefolkning(JSON)
+     function BefolkningConstruct(datasett) {
+        this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
+        this.datasett= datasett;
+         this.getName=function (kommuneNr) {
+             for (elementer in this.datasett) {
+                 if (this.datasett[elementer]["kommunenummer"] === kommuneNr) {
+                     return elementer;
+                 }
+             }
+         };
+         this.getNummer=function (navn) {
+           return this.datasett[navn]["kommunenummer"];
+         };
+    //getNames funkjsonen lager en liste og legger til elementer funnet i datasett
+        this.getNames= function () {
+            let arr=[];
+            for (elementer in this.datasett){
+                arr.push(elementer);
+            }
+            return arr;
+        };
+
+    //getID funkjsonen lager en liste og legger til alle objectene som
+    //har kommunenummer i seg
+        this.getIDs=function () {
+            let arr=[];
+            for (elementer in this.datasett){
+                arr.push(this.datasett[elementer]["kommunenummer"])
+            }
+            return arr;
+        };
+
+         this.getFolketallAar=function (kommuneNr,aar) {
+             for (elementer in this.datasett){
+                 if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
+                     console.log();
+                     return this.datasett[elementer]["Kvinner"][aar]+this.datasett[elementer]["Menn"][aar];
+                 }
+
+             }
+             return "error";
+         };
+
+    //getInfo mottar et input i fra brukeren, thrower error hvis kommunenummeret
+    //ikke eksisterer i objectet. Den returnerer en string med elementet hvis den
+    //finner det.
+        this.getInfo=function (kommuneNr,aar) {
+            for (elementer in this.datasett){
+                if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
+                 //Oppretter et objekt for valgte kommune slik at vi kan ta ut infoen etter objektet er returnert.
+                    //Slik kan vi presentere dataen slik vi ønsker
+                    let thisKommune ={};
+                    thisKommune.befolkning=this.datasett[elementer]["Kvinner"][aar]+this.datasett[elementer]["Menn"][aar];
+                    thisKommune.navn=elementer;
+                    thisKommune.nummer=kommuneNr;
+                    console.log(thisKommune);
+                    return thisKommune;
+
+                }
+
+            }
+            return "error";
+        };
+    }
+
+    function SysselsattConstruct(datasett) {
+      this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
+      this.datasett= datasett;
+
+      this.getNames= function () {
+          let arr=[];
+          for (elementer in this.datasett){
+              arr.push(elementer);
+          }
+          return arr;
+      };
+
+      this.sysselSattePros = function(kommuneNavn,aar){
+        //bruker kommunenavn for å hente ut data.
+          return (this.datasett[kommuneNavn]["Begge kjønn"][aar]).toFixed(2);
+      }
+
+
+    };
+    function UtdaninngConstuct(datasett) {
+      this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
+      this.datasett= datasett;
+
+      this.getUtd = function(){
+        let arr = [];
+        for(elementer in this.datasett){
+          arr.push(this.datasett["elementer"])
+        }
+        return arr
+      };
+
+      this.getHoyUtdanning=function(kommune,aar){
+        //antar at høyere utdanning kun er 03a og 04a
+        //SE ØVE OM DENNE MATTEN E RIKTIG
+        kommune.utdanningProsent =(this.datasett["elementer"][kommune.navn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['03a']["Menn"][aar])/2;
+        kommune.utdanningProsent+=((this.datasett["elementer"][kommune.navn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['04a']["Menn"][aar])/2);
+        kommune.utdanningProsent=kommune.utdanningProsent.toFixed(2);
+        kommune.utdanningAntall=kommune.befolkning*(kommune.utdanningProsent)/100;
+        return kommune;
+      };
+      this.tabellgetUtdanningProsent=function (kommuneNavn, aar) {
+          let utdanning1=(this.datasett["elementer"][kommuneNavn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['03a']["Menn"][aar])/2;
+           utdanning1+=((this.datasett["elementer"][kommuneNavn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['04a']["Menn"][aar])/2);
+          return utdanning1.toFixed(2);
+      }
+    }
 
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 function getDetalj(){
@@ -242,7 +242,22 @@ function getDetalj(){
     let k2 = [document.getElementById("k2").value];
     k1=sjekkInput(k1);
     k2=sjekkInput(k2);
+console.log(k2);
 
+
+    //oppretter tabell i rekkevidden  vi ønsker, gjør det også enklere å iterere gjennom data
+    let aarArray=[];
+     for (let index = 2007; index <= 2017; index++) {
+         aarArray.push(index);
+     }
+
+     //sender kommunenavn og nummer til funksjon som oppretter et objekt med ønsket data
+     let k1Data=lagData(k1);
+     let k2Data=lagData(k2);
+        console.log(k2Data);
+     //sammenligndata måler dataen mot hverandre og oppretter et objekt som sier hvem som har høyest vekst når.
+     let resultat= sammenlignData(k1Data,k2Data);
+        console.log(resultat);
      //denne funksjonen er lokal og sjekker brukerens input, setter begge inputene likt slik at data er uniform for enkel behandling
      //Om brukeren skriver tull eller har feil i input blir fanget og gitt tilbakemelding
         function sjekkInput(kommune) {
@@ -262,13 +277,85 @@ function getDetalj(){
                 alert("Komunnenavn eller -nummer er feil eller finnes ikke. Input:"+kommune +" Error: "+e.name);
             }
         }
-        document.getElementById("kommune1").innerHTML=historiskUtvikling(k1.shift(),k1.shift());
-        document.getElementById("kommune2").innerHTML=historiskUtvikling(k2.shift(),k2.shift());
+
+        //funksjon som henter inn den relevante dataen
+        function lagData(kData) {
+
+            let obj={
+                navn:kData.pop(),
+                popMenn:[],
+                popKvinner:[],
+                sysselMenn:[],
+                sysselKvinner:[]
+            };
+            //befolkning menn
+            aarArray.map(aar=>obj.popMenn.push(
+                befolkObj.datasett[obj.navn]["Menn"][aar]
+            ));
+            //befolkning kvinner
+            aarArray.map(aar=>obj.popKvinner.push(
+                befolkObj.datasett[obj.navn]["Kvinner"][aar]
+            ));
+            //sysselsetting menn
+            aarArray.map(aar=>obj.sysselMenn.push(
+                sysselObj.datasett[obj.navn]["Menn"][aar]
+            ));
+            //sysselsetting kvinner
+            aarArray.map(aar=>obj.sysselKvinner.push(
+                sysselObj.datasett[obj.navn]["Kvinner"][aar]
+            ));
+
+            return obj;
+        }
+        function sammenlignData(kommune1,kommune2) {
+            let resultatMenn={
+                prosentpoeng:[],
+                kommune:[]
+            };
+            let resultatKvinner={
+                prosentpoeng:[],
+                kommune:[]
+            };
+            menn();
+            kvinner();
+            function menn() {
+                for (let i = 0; i < kommune1["sysselMenn"].length-1; i++) {
+                    let k1=kommune1["sysselMenn"][i+1]-kommune1["sysselMenn"][i];
+                    let k2=kommune2["sysselMenn"][i+1]-kommune1["sysselMenn"][i];
+                    if (k1<k2){
+                        resultatMenn.prosentpoeng.push(k1);
+                        resultatMenn.kommune.push(kommune1.navn);
+                    }
+                    else {
+                        resultatMenn.prosentpoeng.push(k2);
+                        resultatMenn.kommune.push(kommune2.navn);
+                    }
+                }
+            }
+            function kvinner() {
+                for (let i = 0; i < kommune1["sysselKvinner"].length-1; i++) {
+                    let k1=kommune1["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
+                    let k2=kommune2["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
+                    if (k1<k2){
+                        resultatMenn.prosentpoeng.push(k1);
+                        resultatMenn.kommune.push(kommune1.navn);
+                    }
+                    else {
+                        resultatKvinner.prosentpoeng.push(k2);
+                        resultatKvinner.kommune.push(kommune2.navn);
+                    }
+                }
+            }
+            return  {
+                resultatKvinner,
+                resultatMenn
+            }
+        }
  }
  //funksjon for å gjøre første bokstav i streng om til stor bokstav.
 String.prototype.storBokstav = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
-}
+};
 
 async function onStart() {
     try {
@@ -281,7 +368,7 @@ async function onStart() {
      syssel = await getSysselsatte();
      console.log(befolkning);
      befolkObj = new BefolkningConstruct(befolkning);
-     sysselObj = new SysselsattConstruct(syssel)
+     sysselObj = new SysselsattConstruct(syssel);
      utdanningObj = new UtdaninngConstuct(utdanning)
     }
     catch(e) {
