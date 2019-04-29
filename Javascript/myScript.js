@@ -208,12 +208,6 @@ function getDetalj(){
         //setter tabell inn i html
     document.getElementById("historisk-utvikling").innerHTML=tabell;
  }
- function getIntro() {
-
-   showBox("intro");
-   //hideAllDiv();
-   //document.getElementById("intro").className = "showBox";
- }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
 // menn og kvinner og printer ut dette i oversiktdata klassen i html.
@@ -250,32 +244,28 @@ async function onStart() {
     }
 }
 
-// Funksjon for gjemming av alle div med unntag av @exceptionID
-function hideAllDiv () {
-
-  let allDiv = document.getElementsByTagName("div");
-  var i;
-  for (i=0; i < allDiv.length; i++) {
-    allDiv[i].className = "hideBox";
-  }
-}
-//Funksjon som viser div med @id
-function showBox (id) {
-  document.getElementById(id).className = "showBox";
-  var allDiv = document.getElementsByTagName("div");
-  var i;
-  for (i=0; i < allDiv.length; i++) {
-    if (allDiv[i].id != id && allDiv[i].id != "noHide") {
-    allDiv[i].className = "hideBox";
-    }
-  }
-  console.log(document.getElementById(id).classList);
-}
-
-
-
 let befolkObj;
 let sysselObj;
 let utdanningObj;
 
+function openTab(evt, tabName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 onStart();
