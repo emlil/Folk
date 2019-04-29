@@ -51,8 +51,12 @@
 
     <!-- div field for sammenligning -->
     <div id="sammenligning" class="blokk">
-      <div id="kommune1"></div>
-      <div id="kommune2"></div>
+        <p>Skriv inn to kommuners navn eller nummer for sammenligning</p>
+        <input id="k1" type="text" value="Kommune 1">
+        <input id="k2" type="text" value="Kommune 2">
+        <button onclick="getSammenligning()">Sammenlign</button>
+        <div class="comparison" id="kommune1"></div>
+      <div class="comparison" id="kommune2"></div>
     </div>
 
 </div>

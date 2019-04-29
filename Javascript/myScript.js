@@ -39,7 +39,16 @@ async function getSysselsatte() {
  function BefolkningConstruct(datasett) {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
     this.datasett= datasett;
-
+     this.getName=function (kommuneNr) {
+         for (elementer in this.datasett) {
+             if (this.datasett[elementer]["kommunenummer"] === kommuneNr) {
+                 return elementer;
+             }
+         }
+     };
+     this.getNummer=function (navn) {
+       return this.datasett[navn]["kommunenummer"];
+     };
 //getNames funkjsonen lager en liste og legger til elementer funnet i datasett
     this.getNames= function () {
         let arr=[];
@@ -157,7 +166,9 @@ function getDetalj(){
     kommune=utdanningObj.getHoyUtdanning(kommune,2017);
     document.getElementById("utdanning").innerHTML="Prosent utdanning "+kommune.utdanningProsent+"</br> Antall utdannet: "+kommune.utdanningAntall;
 
-    historiskUtvikling(kommune['nummer'],kommune['navn'])
+    let tabell=historiskUtvikling(kommune['nummer'],kommune['navn']);
+    //setter tabell inn i html
+    document.getElementById("historisk-utvikling").innerHTML=tabell;
  }
 
  //funksjon som settter sammen data, og bygger tabell
@@ -185,7 +196,9 @@ function getDetalj(){
         aarArray.map(aar=>utdanningArr.push(utdanningObj.tabellgetUtdanningProsent(kommuneNavn,aar)));
         arr.push(utdanningArr);
 
-     tabellFrickeren(arr)
+     return tabellFrickeren(arr);
+
+
  }
  //Funksjon som setter opp tabellen for historisk data
  function tabellFrickeren(arr) {
@@ -205,8 +218,7 @@ function getDetalj(){
 
          return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
      }
-        //setter tabell inn i html
-    document.getElementById("historisk-utvikling").innerHTML=tabell;
+     return tabell;
  }
 
 //getOversikt henter ut befolkning for alle kommunene, legger sammen
@@ -224,6 +236,39 @@ function getDetalj(){
     document.getElementById("oversiktData").innerHTML=arr;
  }
 
+ function getSammenligning(){
+     //Fordi du kan  skrive inn kommunenummer eller navn,må vi finne ut hva du skrev inn
+     let k1= [document.getElementById("k1").value];
+    let k2 = [document.getElementById("k2").value];
+    k1=sjekkInput(k1);
+    k2=sjekkInput(k2);
+
+     //denne funksjonen er lokal og sjekker brukerens input, setter begge inputene likt slik at data er uniform for enkel behandling
+     //Om brukeren skriver tull eller har feil i input blir fanget og gitt tilbakemelding
+        function sjekkInput(kommune) {
+            try {
+
+
+                if (isNaN(kommune[0].charAt(0))) {
+                    kommune[0]=kommune[0].storBokstav();
+                    kommune.unshift(befolkObj.getNummer(kommune[0]));
+                } else {
+                    kommune.push(befolkObj.getName(kommune[0]));
+                }
+
+                return kommune;
+            }
+            catch (e) {
+                alert("Komunnenavn eller -nummer er feil eller finnes ikke. Input:"+kommune +" Error: "+e.name);
+            }
+        }
+        document.getElementById("kommune1").innerHTML=historiskUtvikling(k1.shift(),k1.shift());
+        document.getElementById("kommune2").innerHTML=historiskUtvikling(k2.shift(),k2.shift());
+ }
+ //funksjon for å gjøre første bokstav i streng om til stor bokstav.
+String.prototype.storBokstav = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 
 async function onStart() {
     try {
