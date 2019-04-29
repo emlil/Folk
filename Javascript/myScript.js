@@ -1,29 +1,18 @@
-function GenConstruct(datasett){
+var GenConstruct = function(datasett){
+  this.datasett = datasett
+};
 
-}
-
-function pray(url){
+GenConstruct.prototype.getJson=function(url, callback){
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url)
   xhr.onreadystatechange = function() {
     if(xhr.readyState === 4 && xhr.status === 200){
       var response = JSON.parse(xhr.responseText);
-      console.log(response)
+       return response;
     }
   }
   xhr.send();
-}
 
-GenConstruct.prototype.getJson=function(url){
-  var xhr = new XMLHttpRequest();
-  xhr.open("GET", url)
-  xhr.onreadystatechange = function() {
-    if(xhr.readyState === 4 && xhr.status === 200){
-      var response = JSON.parse(xhr.responseText);
-      console.log(response)
-    }
-  }
-  xhr.send();
 }
 
 GenConstruct.prototype.getNames=function(){
@@ -51,30 +40,23 @@ GenConstruct.prototype.getInfo=function(kommNr){
   return "error";
 }
 
+let befolkObj = new GenConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
 
- function befolkningConstruct(datasett) {
-    var x = Object.create(GenConstruct.prototype)
-    x.getJson(datasett)
-
- }
-
- function sysselsattConstruct(datasett) {
-    var y = Object.create(GenConstruct.prototype)
-    y.getJson(datasett)
-
- }
-
- function utdanningConstuct(datasett) {
-    var z = Object.create(GenConstruct.prototype)
-    z.getJson(datasett)
-
- }
-
-function onStart(){
-     befolkObj= new befolkningConstruct("http://wildboy.uib.no/~tpe056/folk/104857.json");
-    sysselObj = new sysselsattConstruct("http://wildboy.uib.no/~tpe056/folk/100145.json");
-    utdanningConstuct = new utdanningConstuct("http://wildboy.uib.no/~tpe056/folk/85432.json")
+function request(url, callback){
+var xhr = new XMLHttpRequest();
+xhr.open("GET", url)
+xhr.onreadystatechange = function() {
+  if(xhr.readyState === 4 && xhr.status === 200){
+    //var response = JSON.parse(xhr.responseText);
+     callback(xhr.responseText)
+  }
 }
-let befolkObj;
+xhr.send();
+}
 
-onStart();
+const userGet= "http://wildboy.uib.no/~tpe056/folk/104857.json"
+
+var x = request(userGet, function handleIt(komm){
+  const list = JSON.parse(komm)
+
+})
