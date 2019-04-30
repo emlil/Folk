@@ -218,7 +218,7 @@ function getDetalj(){
     //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
      function nextTabellLine(utdanning,sysselsatt,befolkning,aarstall){
 
-         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
+         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"%"+"</td><td>"+utdanning+"%"+"</td>"
      }
      return tabell;
  }
@@ -337,11 +337,11 @@ function getDetalj(){
                     let k2=Number(kommune2["sysselMenn"][i+1]-kommune1["sysselMenn"][i]);
 
                     if (k1>k2){
-                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(2)));
+                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(2))+"%");
                         resultatMenn.kommune.push(kommune1.navn);
                     }
                     else if (k2>k1) {
-                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(2)));
+                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(2))+"%");
                         resultatMenn.kommune.push(kommune2.navn);
                     }
                     else{
@@ -355,11 +355,11 @@ function getDetalj(){
                     let k1=kommune1["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
                     let k2=kommune2["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
                     if (k1>k2){
-                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(2)));
+                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(2))+"%");
                         resultatKvinner.kommune.push(kommune1.navn);
                     }
                     else if(k2>k1) {
-                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(2)));
+                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(2))+"%");
                         resultatKvinner.kommune.push(kommune2.navn);
                     }
                     else {
@@ -386,8 +386,8 @@ function getDetalj(){
 
              //while løkke kaller funksjon så lenge det er mer data å hente.
          while(aarArray.length>=1){
-             let foo=[resultat.resultatKvinner.kommune.pop(),resultat.resultatKvinner.prosentpoeng.pop(),k2Data.sysselKvinner.pop(),k2Data.popKvinner.pop(),k1Data.sysselKvinner.pop(),k1Data.popKvinner.pop(),
-             resultat.resultatMenn.kommune.pop(),resultat.resultatMenn.prosentpoeng.pop(),k2Data.sysselMenn.pop(),k2Data.popMenn.pop(),k1Data.sysselMenn.pop(),k1Data.popMenn.pop(),aarArray.pop()
+             let foo=[resultat.resultatKvinner.kommune.pop(),resultat.resultatKvinner.prosentpoeng.pop(),k2Data.sysselKvinner.pop()+"%",k2Data.popKvinner.pop(),k1Data.sysselKvinner.pop()+"%",k1Data.popKvinner.pop(),
+             resultat.resultatMenn.kommune.pop(),resultat.resultatMenn.prosentpoeng.pop(),k2Data.sysselMenn.pop()+"%",k2Data.popMenn.pop(),k1Data.sysselMenn.pop()+"%",k1Data.popMenn.pop(),aarArray.pop()
              ];
 
              tabell+=nextTabellLine(foo);
