@@ -218,7 +218,10 @@ function getDetalj(){
     //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
      function nextTabellLine(utdanning,sysselsatt,befolkning,aarstall){
 
-         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"%"+"</td><td>"+utdanning+"%"+"</td>"
+         return "<tr><td class = 'detaljTabell'>"+aarstall+"</td><td class = 'detaljTabell'>"
+         +befolkning+"</td><td class = 'detaljTabell'>"
+         +sysselsatt+"%"+"</td><td class = 'detaljTabell'>"
+         +utdanning+"%"+"</td></tr>"
      }
      return tabell;
  }
@@ -398,7 +401,7 @@ function getDetalj(){
 
              let temp= "<tr>";
              while(foo.length>=1){
-                 temp+="<td>"+foo.pop()+"</td>"
+                 temp+="<td class = 'sammenligntabell'>"+foo.pop()+"</td>"
              }
                 temp+="</tr>";
              return temp;
