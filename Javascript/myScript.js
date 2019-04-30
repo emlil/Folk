@@ -373,10 +373,10 @@ function getDetalj(){
      function tabellFrickeren2ElectricBogaloo() {
 
             //oppretter header med alle verdien vi ønsker å ha i tabellen
-            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning menn"+k1Data.navn+"</th><th>Sysselsetting menn"+k1Data.navn+"</th>" +
-                "<th>Befolkning menn"+k2Data.navn+"</th><th>Sysselsetting menn"+k2Data.navn+"</th><th>Prosentpoeng menn</th><th>Kommune menn</th>" +
-                "<th>Befolkning Kvinner"+k1Data.navn+"</th><th>Sysselsetting kvinner"+k1Data.navn+"</th><th>Befolkning Kvinner"+k2Data.navn+"</th><th>Sysselsetting Kvinner"+k2Data.navn+"</th>" +
-                "<th>Prosentpoeng Kvinner</th><th>Kommune Kvinner</th></tr>";
+            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning Menn "+k1Data.navn+"</th><th>Sysselsetting Menn "+k1Data.navn+"</th>" +
+                "<th>Befolkning Menn "+k2Data.navn+"</th><th>Sysselsetting Menn "+k2Data.navn+"</th><th>Høyest Vekst Menn</th><th>Kommune, Høyest Vekst Menn</th>" +
+                "<th>Befolkning Kvinner "+k1Data.navn+"</th><th>Sysselsetting Kvinner "+k1Data.navn+"</th><th>Befolkning Kvinner "+k2Data.navn+"</th><th>Sysselsetting Kvinner "+k2Data.navn+"</th>" +
+                "<th>Høyest Vekst Kvinner</th><th>Kommune, Høyest Vekst Kvinner</th></tr>";
 
             //fordi vi ikke har noen data fra 2006 til 2007 setter vi dette året til 0 slik at vi ikke får undefined i tabellen
             resultat.resultatMenn.prosentpoeng.unshift(0);
