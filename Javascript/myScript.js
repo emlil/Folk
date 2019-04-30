@@ -208,6 +208,7 @@ function getDetalj(){
     let befolkning=arr.pop();
     let aarstall=arr.pop();
 
+
     while(utdanning.length>=1){
         tabell+=nextTabellLine(utdanning.pop(),sysselsatt.pop(),befolkning.pop(),aarstall.pop());
 
@@ -242,7 +243,6 @@ function getDetalj(){
     let k2 = [document.getElementById("k2").value];
     k1=sjekkInput(k1);
     k2=sjekkInput(k2);
-console.log(k2);
 
 
     //oppretter tabell i rekkevidden  vi ønsker, gjør det også enklere å iterere gjennom data
@@ -254,10 +254,14 @@ console.log(k2);
      //sender kommunenavn og nummer til funksjon som oppretter et objekt med ønsket data
      let k1Data=lagData(k1);
      let k2Data=lagData(k2);
-        console.log(k2Data);
+     console.log(k1Data);
+     console.log(k2Data);
      //sammenligndata måler dataen mot hverandre og oppretter et objekt som sier hvem som har høyest vekst når.
      let resultat= sammenlignData(k1Data,k2Data);
         console.log(resultat);
+
+     tabellFrickeren2ElectricBogaloo();
+
      //denne funksjonen er lokal og sjekker brukerens input, setter begge inputene likt slik at data er uniform for enkel behandling
      //Om brukeren skriver tull eller har feil i input blir fanget og gitt tilbakemelding
         function sjekkInput(kommune) {
@@ -265,6 +269,7 @@ console.log(k2);
 
 
                 if (isNaN(kommune[0].charAt(0))) {
+                    kommune[0]=kommune[0].toLowerCase();
                     kommune[0]=kommune[0].storBokstav();
                     kommune.unshift(befolkObj.getNummer(kommune[0]));
                 } else {
@@ -307,6 +312,7 @@ console.log(k2);
 
             return obj;
         }
+        //funksjon som for hvert kjønn
         function sammenlignData(kommune1,kommune2) {
             let resultatMenn={
                 prosentpoeng:[],
@@ -316,19 +322,30 @@ console.log(k2);
                 prosentpoeng:[],
                 kommune:[]
             };
+
             menn();
             kvinner();
+
+            return  {
+                resultatKvinner,
+                resultatMenn
+            };
             function menn() {
                 for (let i = 0; i < kommune1["sysselMenn"].length-1; i++) {
-                    let k1=kommune1["sysselMenn"][i+1]-kommune1["sysselMenn"][i];
-                    let k2=kommune2["sysselMenn"][i+1]-kommune1["sysselMenn"][i];
-                    if (k1<k2){
-                        resultatMenn.prosentpoeng.push(k1);
+                    let k1=Number(kommune1["sysselMenn"][i+1]-kommune1["sysselMenn"][i]);
+                    let k2=Number(kommune2["sysselMenn"][i+1]-kommune1["sysselMenn"][i]);
+
+                    if (k1>k2){
+                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(2)));
                         resultatMenn.kommune.push(kommune1.navn);
                     }
-                    else {
-                        resultatMenn.prosentpoeng.push(k2);
+                    else if (k2>k1) {
+                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(2)));
                         resultatMenn.kommune.push(kommune2.navn);
+                    }
+                    else{
+                        resultatMenn.prosentpoeng.push(0);
+                        resultatMenn.kommune.push("Lik vekst");
                     }
                 }
             }
@@ -336,21 +353,39 @@ console.log(k2);
                 for (let i = 0; i < kommune1["sysselKvinner"].length-1; i++) {
                     let k1=kommune1["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
                     let k2=kommune2["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
-                    if (k1<k2){
-                        resultatMenn.prosentpoeng.push(k1);
-                        resultatMenn.kommune.push(kommune1.navn);
+                    if (k1>k2){
+                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(2)));
+                        resultatKvinner.kommune.push(kommune1.navn);
+                    }
+                    else if(k2>k1) {
+                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(2)));
+                        resultatKvinner.kommune.push(kommune2.navn);
                     }
                     else {
-                        resultatKvinner.prosentpoeng.push(k2);
-                        resultatKvinner.kommune.push(kommune2.navn);
+                        resultatKvinner.prosentpoeng.push(0);
+                        resultatKvinner.kommune.push("Lik vekst");
                     }
                 }
             }
-            return  {
-                resultatKvinner,
-                resultatMenn
-            }
+
         }
+     function tabellFrickeren2ElectricBogaloo() {
+            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
+
+         while(aarArray.length>=1){
+             let foo=[resultatKvinner.kommune.pop(),resultatKvinner.prosentpoeng.pop(),
+                 resultatMenn.kommune.pop(),resultatMenn.prosentpoeng.pop(),k2Data.sysselKvinner,k2Data.popKvinner
+                 ,k2Data.sysselMenn,k2Data.popMenn,aarArray.pop()];
+
+             tabell+=nextTabellLine(foo);
+         }
+         tabell+="</table>";
+         //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
+         function nextTabellLine(){
+
+             return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
+         }
+     }
  }
  //funksjon for å gjøre første bokstav i streng om til stor bokstav.
 String.prototype.storBokstav = function() {
