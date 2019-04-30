@@ -370,17 +370,20 @@ function getDetalj(){
 
         }
      function tabellFrickeren2ElectricBogaloo() {
+
+            //oppretter header med alle verdien vi ønsker å ha i tabellen
             let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning menn"+k1Data.navn+"</th><th>Sysselsetting menn"+k1Data.navn+"</th>" +
                 "<th>Befolkning menn"+k2Data.navn+"</th><th>Sysselsetting menn"+k2Data.navn+"</th><th>Prosentpoeng menn</th><th>Kommune menn</th>" +
                 "<th>Befolkning Kvinner"+k1Data.navn+"</th><th>Sysselsetting kvinner"+k1Data.navn+"</th><th>Befolkning Kvinner"+k2Data.navn+"</th><th>Sysselsetting Kvinner"+k2Data.navn+"</th>" +
                 "<th>Prosentpoeng Kvinner</th><th>Kommune Kvinner</th></tr>";
 
+            //fordi vi ikke har noen data fra 2006 til 2007 setter vi dette året til 0 slik at vi ikke får undefined i tabellen
             resultat.resultatMenn.prosentpoeng.unshift(0);
             resultat.resultatKvinner.prosentpoeng.unshift(0);
             resultat.resultatMenn.kommune.unshift("ingen data");
              resultat.resultatKvinner.kommune.unshift("ingen data");
 
-
+             //while løkke kaller funksjon så lenge det er mer data å hente.
          while(aarArray.length>=1){
              let foo=[resultat.resultatKvinner.kommune.pop(),resultat.resultatKvinner.prosentpoeng.pop(),k2Data.sysselKvinner.pop(),k2Data.popKvinner.pop(),k1Data.sysselKvinner.pop(),k1Data.popKvinner.pop(),
              resultat.resultatMenn.kommune.pop(),resultat.resultatMenn.prosentpoeng.pop(),k2Data.sysselMenn.pop(),k2Data.popMenn.pop(),k1Data.sysselMenn.pop(),k1Data.popMenn.pop(),aarArray.pop()
@@ -392,9 +395,16 @@ function getDetalj(){
          //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
          function nextTabellLine(foo){
 
-             return "<tr><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
-                 "<td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
-                 "<td>"+foo.pop()+"</td></tr>"
+             let temp= "<tr>";
+             while(foo.length>=1){
+                 temp+="<td>"+foo.pop()+"</td>"
+             }
+                temp+="</tr>";
+             return temp;
+
+           //  "<tr><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
+             //"<td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
+           //  "<td>"+foo.pop()+"</td></tr>"
          }
          return tabell;
      }
