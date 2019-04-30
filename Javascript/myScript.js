@@ -149,6 +149,7 @@
     }
 
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
+//TODO: Legg til fagskole
 function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
 
@@ -201,6 +202,7 @@ function getDetalj(){
 
  }
  //Funksjon som setter opp tabellen for historisk data
+    //TODO: Legg til prosenttegn
  function tabellFrickeren(arr) {
      let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
     let utdanning=arr.pop();
@@ -235,7 +237,7 @@ function getDetalj(){
     }
     document.getElementById("oversiktData").innerHTML=arr;
  }
-
+//TODO: Legg til feilmelding hvis gyldig har blitt søkt og så ugyldig.
  function getSammenligning(){
      //Fordi du kan  skrive inn kommunenummer eller navn,må vi finne ut hva du skrev inn
      let k1= [document.getElementById("k1").value];
@@ -441,6 +443,7 @@ function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
 
   // Get all elements with class="tabcontent" and hide them
+    //TODO: gjør slik at introduksjon er default
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";

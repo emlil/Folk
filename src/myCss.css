@@ -84,7 +84,7 @@ footer {
     float: bottom;
 }
 #oversiktData{
-    border: 5px dotted #dc272a;
+    border: 5px solid black;
     width: 500px;
     height: 500px;
     overflow: hidden;
