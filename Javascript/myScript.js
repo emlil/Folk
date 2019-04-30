@@ -373,7 +373,7 @@ function getDetalj(){
      function tabellFrickeren2ElectricBogaloo() {
 
             //oppretter header med alle verdien vi ønsker å ha i tabellen
-            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning menn"+k1Data.navn+"</th><th>Sysselsetting menn"+k1Data.navn+"</th>" +
+            let tabell= "<table id='tabell2'> <tr><th>År</th><th>Befolkning menn"+k1Data.navn+"</th><th>Sysselsetting menn"+k1Data.navn+"</th>" +
                 "<th>Befolkning menn"+k2Data.navn+"</th><th>Sysselsetting menn"+k2Data.navn+"</th><th>Prosentpoeng menn</th><th>Kommune menn</th>" +
                 "<th>Befolkning Kvinner"+k1Data.navn+"</th><th>Sysselsetting kvinner"+k1Data.navn+"</th><th>Befolkning Kvinner"+k2Data.navn+"</th><th>Sysselsetting Kvinner"+k2Data.navn+"</th>" +
                 "<th>Prosentpoeng Kvinner</th><th>Kommune Kvinner</th></tr>";
@@ -440,7 +440,7 @@ let utdanningObj;
 
 function openTab(evt, tabName) {
   // Declare all variables
-  var i, tabcontent, tablinks;
+  var i, tabcontent, tablinks, tabcontentIntro;
 
   // Get all elements with class="tabcontent" and hide them
     //TODO: gjør slik at introduksjon er default
@@ -455,8 +455,11 @@ function openTab(evt, tabName) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
+
+
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabName).style.display = "block";
   evt.currentTarget.className += " active";
 }
 onStart();
+
