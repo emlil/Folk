@@ -218,7 +218,7 @@ function getDetalj(){
     //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
      function nextTabellLine(utdanning,sysselsatt,befolkning,aarstall){
 
-         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
+         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"%"+"</td><td>"+utdanning+"%"+"</td>"
      }
      return tabell;
  }
@@ -337,11 +337,11 @@ function getDetalj(){
                     let k2=Number(kommune2["sysselMenn"][i+1]-kommune1["sysselMenn"][i]);
 
                     if (k1>k2){
-                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(2)));
+                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(2))+"%");
                         resultatMenn.kommune.push(kommune1.navn);
                     }
                     else if (k2>k1) {
-                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(2)));
+                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(2))+"%");
                         resultatMenn.kommune.push(kommune2.navn);
                     }
                     else{
@@ -355,11 +355,11 @@ function getDetalj(){
                     let k1=kommune1["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
                     let k2=kommune2["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
                     if (k1>k2){
-                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(2)));
+                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(2))+"%");
                         resultatKvinner.kommune.push(kommune1.navn);
                     }
                     else if(k2>k1) {
-                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(2)));
+                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(2))+"%");
                         resultatKvinner.kommune.push(kommune2.navn);
                     }
                     else {
@@ -373,10 +373,10 @@ function getDetalj(){
      function tabellFrickeren2ElectricBogaloo() {
 
             //oppretter header med alle verdien vi ønsker å ha i tabellen
-            let tabell= "<table id='tabell2'> <tr><th>År</th><th>Befolkning menn"+k1Data.navn+"</th><th>Sysselsetting menn"+k1Data.navn+"</th>" +
-                "<th>Befolkning menn"+k2Data.navn+"</th><th>Sysselsetting menn"+k2Data.navn+"</th><th>Prosentpoeng menn</th><th>Kommune menn</th>" +
-                "<th>Befolkning Kvinner"+k1Data.navn+"</th><th>Sysselsetting kvinner"+k1Data.navn+"</th><th>Befolkning Kvinner"+k2Data.navn+"</th><th>Sysselsetting Kvinner"+k2Data.navn+"</th>" +
-                "<th>Prosentpoeng Kvinner</th><th>Kommune Kvinner</th></tr>";
+            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning Menn "+k1Data.navn+"</th><th>Sysselsetting Menn "+k1Data.navn+"</th>" +
+                "<th>Befolkning Menn "+k2Data.navn+"</th><th>Sysselsetting Menn "+k2Data.navn+"</th><th>Høyest Vekst Menn</th><th>Kommune, Høyest Vekst Menn</th>" +
+                "<th>Befolkning Kvinner "+k1Data.navn+"</th><th>Sysselsetting Kvinner "+k1Data.navn+"</th><th>Befolkning Kvinner "+k2Data.navn+"</th><th>Sysselsetting Kvinner "+k2Data.navn+"</th>" +
+                "<th>Høyest Vekst Kvinner</th><th>Kommune, Høyest Vekst Kvinner</th></tr>";
 
             //fordi vi ikke har noen data fra 2006 til 2007 setter vi dette året til 0 slik at vi ikke får undefined i tabellen
             resultat.resultatMenn.prosentpoeng.unshift(0);
@@ -386,8 +386,8 @@ function getDetalj(){
 
              //while løkke kaller funksjon så lenge det er mer data å hente.
          while(aarArray.length>=1){
-             let foo=[resultat.resultatKvinner.kommune.pop(),resultat.resultatKvinner.prosentpoeng.pop(),k2Data.sysselKvinner.pop(),k2Data.popKvinner.pop(),k1Data.sysselKvinner.pop(),k1Data.popKvinner.pop(),
-             resultat.resultatMenn.kommune.pop(),resultat.resultatMenn.prosentpoeng.pop(),k2Data.sysselMenn.pop(),k2Data.popMenn.pop(),k1Data.sysselMenn.pop(),k1Data.popMenn.pop(),aarArray.pop()
+             let foo=[resultat.resultatKvinner.kommune.pop(),resultat.resultatKvinner.prosentpoeng.pop(),k2Data.sysselKvinner.pop()+"%",k2Data.popKvinner.pop(),k1Data.sysselKvinner.pop()+"%",k1Data.popKvinner.pop(),
+             resultat.resultatMenn.kommune.pop(),resultat.resultatMenn.prosentpoeng.pop(),k2Data.sysselMenn.pop()+"%",k2Data.popMenn.pop(),k1Data.sysselMenn.pop()+"%",k1Data.popMenn.pop(),aarArray.pop()
              ];
 
              tabell+=nextTabellLine(foo);
@@ -462,4 +462,3 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 onStart();
-
