@@ -260,7 +260,7 @@ function getDetalj(){
      let resultat= sammenlignData(k1Data,k2Data);
         console.log(resultat);
 
-     tabellFrickeren2ElectricBogaloo();
+     document.getElementById("kommune1").innerHTML=tabellFrickeren2ElectricBogaloo();
 
      //denne funksjonen er lokal og sjekker brukerens input, setter begge inputene likt slik at data er uniform for enkel behandling
      //Om brukeren skriver tull eller har feil i input blir fanget og gitt tilbakemelding
@@ -370,21 +370,33 @@ function getDetalj(){
 
         }
      function tabellFrickeren2ElectricBogaloo() {
-            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
+            let tabell= "<table class='table'> <tr><th>År</th><th>Befolkning menn"+k1Data.navn+"</th><th>Sysselsetting menn"+k1Data.navn+"</th>" +
+                "<th>Befolkning menn"+k2Data.navn+"</th><th>Sysselsetting menn"+k2Data.navn+"</th><th>Prosentpoeng menn</th><th>Kommune menn</th>" +
+                "<th>Befolkning Kvinner"+k1Data.navn+"</th><th>Sysselsetting kvinner"+k1Data.navn+"</th><th>Befolkning Kvinner"+k2Data.navn+"</th><th>Sysselsetting Kvinner"+k2Data.navn+"</th>" +
+                "<th>Prosentpoeng Kvinner</th><th>Kommune Kvinner</th></tr>";
+
+            resultat.resultatMenn.prosentpoeng.unshift(0);
+            resultat.resultatKvinner.prosentpoeng.unshift(0);
+            resultat.resultatMenn.kommune.unshift("ingen data");
+             resultat.resultatKvinner.kommune.unshift("ingen data");
+
 
          while(aarArray.length>=1){
-             let foo=[resultatKvinner.kommune.pop(),resultatKvinner.prosentpoeng.pop(),
-                 resultatMenn.kommune.pop(),resultatMenn.prosentpoeng.pop(),k2Data.sysselKvinner,k2Data.popKvinner
-                 ,k2Data.sysselMenn,k2Data.popMenn,aarArray.pop()];
+             let foo=[resultat.resultatKvinner.kommune.pop(),resultat.resultatKvinner.prosentpoeng.pop(),k2Data.sysselKvinner.pop(),k2Data.popKvinner.pop(),k1Data.sysselKvinner.pop(),k1Data.popKvinner.pop(),
+             resultat.resultatMenn.kommune.pop(),resultat.resultatMenn.prosentpoeng.pop(),k2Data.sysselMenn.pop(),k2Data.popMenn.pop(),k1Data.sysselMenn.pop(),k1Data.popMenn.pop(),aarArray.pop()
+             ];
 
              tabell+=nextTabellLine(foo);
          }
          tabell+="</table>";
          //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
-         function nextTabellLine(){
+         function nextTabellLine(foo){
 
-             return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"</td><td>"+utdanning+"</td>"
+             return "<tr><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
+                 "<td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
+                 "<td>"+foo.pop()+"</td></tr>"
          }
+         return tabell;
      }
  }
  //funksjon for å gjøre første bokstav i streng om til stor bokstav.
