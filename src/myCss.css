@@ -63,7 +63,7 @@ button {
 table, th, td {
     border: 1px solid black;
 }
-td:hover{
+tr:hover{
     background-color: white;
     font-weight: bold;
 }
