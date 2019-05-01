@@ -398,7 +398,7 @@ function getDetalj(){
 
              let temp= "<tr>";
              while(foo.length>=1){
-                 temp+="<td>"+foo.pop()+"</td>"
+                 temp+="<td class=''>"+foo.pop()+"</td>"
              }
                 temp+="</tr>";
              return temp;
