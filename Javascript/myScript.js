@@ -218,7 +218,10 @@ function getDetalj(){
     //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
      function nextTabellLine(utdanning,sysselsatt,befolkning,aarstall){
 
-         return "<tr><td>"+aarstall+"</td><td>"+befolkning+"</td><td>"+sysselsatt+"%"+"</td><td>"+utdanning+"%"+"</td>"
+         return "<tr><td class = 'detaljTabell'>"+aarstall+"</td><td class = 'detaljTabell'>"
+         +befolkning+"</td><td class = 'detaljTabell'>"
+         +sysselsatt+"%"+"</td><td class = 'detaljTabell'>"
+         +utdanning+"%"+"</td></tr>"
      }
      return tabell;
  }
@@ -398,7 +401,7 @@ function getDetalj(){
 
              let temp= "<tr>";
              while(foo.length>=1){
-                 temp+="<td class=''>"+foo.pop()+"</td>"
+                 temp+="<td class = 'sammenligntabell'>"+foo.pop()+"</td>"
              }
                 temp+="</tr>";
              return temp;
@@ -440,7 +443,7 @@ let utdanningObj;
 
 function openTab(evt, tabName) {
   // Declare all variables
-  var i, tabcontent, tablinks;
+  var i, tabcontent, tablinks, tabcontentIntro;
 
   // Get all elements with class="tabcontent" and hide them
     //TODO: gjør slik at introduksjon er default
@@ -454,6 +457,8 @@ function openTab(evt, tabName) {
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
+
+
 
   // Show the current tab, and add an "active" class to the button that opened the tab
   document.getElementById(tabName).style.display = "block";

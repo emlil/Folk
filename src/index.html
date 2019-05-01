@@ -7,6 +7,7 @@
     <script type="text/javascript" src="../Javascript/myScript.js"></script>
     <link rel="stylesheet" type="text/css" href="myCss.css">
 </head>
+<body onload="openTab(event, 'Introduksjon')">
 <div class = "wrapper">
   <header class = "header"><h1> INFO134 - Semesteroppgave vår 2019</h1></header>
   <div id="mainButton-flexcontainers">
@@ -17,7 +18,7 @@
 </div>
 </div>
 
-
+<div class = wrapper>
 <h1>SSB-statistikk</h1>
   <!-- Tab content -->
   <div id="Introduksjon" class="tabcontent">
@@ -55,11 +56,9 @@
         <input id="k1" type="text" value="Stavanger">
         <input id="k2" type="text" value="Sandnes">
         <button onclick="getSammenligning()">Sammenlign</button>
-        <div class="comparison" id="kommune1"></div>
-      <div class="comparison" id="kommune2"></div>
+        <div id="kommune1"></div>
     </div>
-
-</div>
+  </div>
 
 <footer>
     <p>Dette er en oppgavebesvarelse i faget <strong>INFO134</strong></p>
