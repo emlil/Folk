@@ -142,3 +142,30 @@ function UtdaninngConstuct(datasett) {
         return utdanning1.toFixed(2);
     }
 }
+
+function onStart() {
+    try {
+
+        befolkObj = new BefolkningConstruct();
+        befolkObj.load(befolkObj,handleIt);
+        console.log(befolkObj);
+
+        sysselObj = new SysselsattConstruct();
+        sysselObj.load(sysselObj,handleIt);
+        console.log(sysselObj);
+
+        utdanningObj = new UtdaninngConstuct();
+        utdanningObj.load(utdanningObj,handleIt);
+        console.log(utdanningObj);
+
+    }
+    catch(e) {
+        console.log("CAUGHT EXCEPTION", e);
+    }
+}
+
+let befolkObj;
+let sysselObj;
+let utdanningObj;
+
+onStart()
