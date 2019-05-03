@@ -79,9 +79,9 @@ function requestTwo(url, callback){
     }
 
 
-/*function handleIt(komm){
+function handleIt(komm){
   return JSON.parse(komm);
-}*/
+}
 
 const userGet= "http://wildboy.uib.no/~tpe056/folk/104857.json"
 const userGetTwo= "http://wildboy.uib.no/~tpe056/folk/104857.json"
