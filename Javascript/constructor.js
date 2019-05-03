@@ -1,6 +1,6 @@
 function BefolkningConstruct() {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-    this.load=function (befolk,callback) {
+    this.load=function (befolk) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
@@ -8,6 +8,7 @@ function BefolkningConstruct() {
             if (this.status===200&&this.readyState===4){
                 let foo =JSON.parse(xhr.responseText);
                 befolk.datasett=foo["elementer"];
+                ready.push(1);
             }
         };
         xhr.send();
@@ -75,9 +76,9 @@ function BefolkningConstruct() {
     };
 }
 
-function SysselsattConstruct(datasett) {
+function SysselsattConstruct() {
     this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
-    this.load=function (syssel,callback) {
+    this.load=function (syssel) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
@@ -85,6 +86,8 @@ function SysselsattConstruct(datasett) {
             if (this.status===200&&this.readyState===4){
                 let foo =JSON.parse(xhr.responseText);
                 syssel.datasett=foo["elementer"];
+                ready.push(1);
+
             }
         };
         xhr.send();
@@ -105,9 +108,9 @@ function SysselsattConstruct(datasett) {
 
 
 };
-function UtdaninngConstuct(datasett) {
+function UtdaninngConstuct() {
     this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
-    this.load=function (utdanning,callback) {
+    this.load=function (utdanning) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
@@ -115,14 +118,20 @@ function UtdaninngConstuct(datasett) {
             if (this.status===200&&this.readyState===4){
                 let foo =JSON.parse(xhr.responseText);
                 utdanning.datasett=foo;
+                ready.push(1);
+
             }
         };
         xhr.send();
     };
-    this.getUtd = function(){
+
+    this.getNames = function(){
         let arr = [];
-        for(elementer in this.datasett){
-            arr.push(this.datasett["elementer"])
+        let prev="";
+        let obj = this.datasett["elementer"];
+        for(elementer in obj){
+
+            arr.push(elementer)
         }
         return arr
     };
@@ -145,27 +154,30 @@ function UtdaninngConstuct(datasett) {
 
 function onStart() {
     try {
-
         befolkObj = new BefolkningConstruct();
-        befolkObj.load(befolkObj,handleIt);
+        befolkObj.load(befolkObj);
         console.log(befolkObj);
 
         sysselObj = new SysselsattConstruct();
-        sysselObj.load(sysselObj,handleIt);
+        sysselObj.load(sysselObj);
         console.log(sysselObj);
 
         utdanningObj = new UtdaninngConstuct();
-        utdanningObj.load(utdanningObj,handleIt);
+        utdanningObj.load(utdanningObj);
         console.log(utdanningObj);
+
+
+        sum=befolkObj.getName()+utdanningObj.get
+
 
     }
     catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
 }
-
+let ready=[];
 let befolkObj;
 let sysselObj;
 let utdanningObj;
 
-onStart()
+onStart();
