@@ -48,15 +48,46 @@ xhr.open("GET", url)
 xhr.onreadystatechange = function() {
   if(xhr.readyState === 4 && xhr.status === 200){
     //var response = JSON.parse(xhr.responseText);
-     callback(xhr.responseText)
+    myDataset1 = callback(xhr.responseText)
   }
 }
 xhr.send();
 }
 
+function requestTwo(url, callback){
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", url)
+  xhr.onreadystatechange = function() {
+    if(xhr.readyState === 4 && xhr.status === 200){
+      //var response = JSON.parse(xhr.responseText);
+      myDataset2 = callback(xhr.responseText)
+    }
+  }
+  xhr.send();
+  }
+
+  function requestThree(url, callback){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", url)
+    xhr.onreadystatechange = function() {
+      if(xhr.readyState === 4 && xhr.status === 200){
+        //var response = JSON.parse(xhr.responseText);
+        myDataset3 = callback(xhr.responseText)
+      }
+    }
+    xhr.send();
+    }
+
+
+/*function handleIt(komm){
+  return JSON.parse(komm);
+}*/
+
 const userGet= "http://wildboy.uib.no/~tpe056/folk/104857.json"
+const userGetTwo= "http://wildboy.uib.no/~tpe056/folk/104857.json"
+const UserGetThree = "http://wildboy.uib.no/~tpe056/folk/104857.json"
 
-var x = request(userGet, function handleIt(komm){
-  const list = JSON.parse(komm)
-
-})
+request(userGet, handleIt);
+requestTwo(userGetTwo, handleIt)
+requestThree(UserGetThree, handleIt)
+let myDataset1, myDataset2, myDataset3;
