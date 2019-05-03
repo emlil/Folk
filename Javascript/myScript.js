@@ -1,44 +1,21 @@
-    //Henter Utdanning(JSON) fra wilbody
-    async function getUtdanning() {
-        /*let job =  new Promise(
-          function(resolve, reject) {
-              // Fetch data with json
-            let failed = true;
-            if (failed) {
-                reject("It bork");
-            }
-
-            resolve("data");
-          }
-        );
-
-        console.log("HELLO");
-
-        return job;*/
-        let call = await fetch("http://wildboy.uib.no/~tpe056/folk/85432.json");
-        let data = await call.json();
-        return data;
+ function handleIt(obj) {
+        return (obj);
     }
-
-    //Henter Befolkning(JSON) fra wildboy
-    //(fetch er ES6, la oss spørre Truls om dette)
-    async function getBefolkning() {
-    let call = await fetch("http://wildboy.uib.no/~tpe056/folk/104857.json");
-       call= await call.json();
-    return call["elementer"];
-    }
-
-    //Henter Sysselsatte(JSON) fra Wildboy
-    async function getSysselsatte() {
-        let call = await fetch("http://wildboy.uib.no/~tpe056/folk/100145.json");
-        call=await call.json();
-        return call["elementer"]
-    }
-
-    //Konstruktor, mottar object fra getBefolkning(JSON)
-     function BefolkningConstruct(datasett) {
+     function BefolkningConstruct() {
         this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
-        this.datasett= datasett;
+        this.load=function (befolk,callback) {
+            console.log("kjører");
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET",this.url);
+            xhr.onreadystatechange=function () {
+                if (this.status===200&&this.readyState===4){
+                   let foo =JSON.parse(xhr.responseText);
+                    befolk.datasett=foo["elementer"];
+                }
+            };
+            xhr.send();
+        };
+
          this.getName=function (kommuneNr) {
              for (elementer in this.datasett) {
                  if (this.datasett[elementer]["kommunenummer"] === kommuneNr) {
@@ -103,7 +80,18 @@
 
     function SysselsattConstruct(datasett) {
       this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
-      this.datasett= datasett;
+        this.load=function (syssel,callback) {
+            console.log("kjører");
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET",this.url);
+            xhr.onreadystatechange=function () {
+                if (this.status===200&&this.readyState===4){
+                    let foo =JSON.parse(xhr.responseText);
+                    syssel.datasett=foo["elementer"];
+                }
+            };
+            xhr.send();
+        };
 
       this.getNames= function () {
           let arr=[];
@@ -122,8 +110,18 @@
     };
     function UtdaninngConstuct(datasett) {
       this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
-      this.datasett= datasett;
-
+        this.load=function (utdanning,callback) {
+            console.log("kjører");
+            let xhr = new XMLHttpRequest();
+            xhr.open("GET",this.url);
+            xhr.onreadystatechange=function () {
+                if (this.status===200&&this.readyState===4){
+                    let foo =JSON.parse(xhr.responseText);
+                    utdanning.datasett=foo;
+                }
+            };
+            xhr.send();
+        };
       this.getUtd = function(){
         let arr = [];
         for(elementer in this.datasett){
@@ -418,19 +416,21 @@ String.prototype.storBokstav = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-async function onStart() {
+ function onStart() {
     try {
-    let utdanning = await getUtdanning();
-    console.log(utdanning);
 
-    let sysselsatt = await getSysselsatte();
-    console.log(sysselsatt);
-     let befolkning = await getBefolkning();
-     syssel = await getSysselsatte();
-     console.log(befolkning);
-     befolkObj = new BefolkningConstruct(befolkning);
-     sysselObj = new SysselsattConstruct(syssel);
-     utdanningObj = new UtdaninngConstuct(utdanning)
+     befolkObj = new BefolkningConstruct();
+     befolkObj.load(befolkObj,handleIt);
+     console.log(befolkObj);
+
+     sysselObj = new SysselsattConstruct();
+     sysselObj.load(sysselObj,handleIt);
+     console.log(sysselObj);
+
+     utdanningObj = new UtdaninngConstuct();
+     utdanningObj.load(utdanningObj,handleIt);
+     console.log(utdanningObj);
+
     }
     catch(e) {
         console.log("CAUGHT EXCEPTION", e);
