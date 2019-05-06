@@ -112,8 +112,7 @@ function getDetalj(){
      //sender kommunenavn og nummer til funksjon som oppretter et objekt med ønsket data
      let k1Data=lagData(k1);
      let k2Data=lagData(k2);
-     console.log(k1Data);
-     console.log(k2Data);
+
      //sammenligndata måler dataen mot hverandre og oppretter et objekt som sier hvem som har høyest vekst når.
      let resultat= sammenlignData(k1Data,k2Data);
         console.log(resultat);
@@ -190,15 +189,16 @@ function getDetalj(){
             };
             function menn() {
                 for (let i = 0; i < kommune1["sysselMenn"].length-1; i++) {
-                    let k1=Number(kommune1["sysselMenn"][i+1]-kommune1["sysselMenn"][i]);
-                    let k2=Number(kommune2["sysselMenn"][i+1]-kommune1["sysselMenn"][i]);
+                    let k1=Number((kommune1["sysselMenn"][i]-kommune1["sysselMenn"][i+1])*-1);
+                    let k2=Number((kommune2["sysselMenn"][i]-kommune2["sysselMenn"][i+1])*-1);
+                    console.log(k1+"   "+k2)
 
-                    if (k1>k2){
-                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(2))+"%");
+                    if (parseFloat(k1)>parseFloat(k2)){
+                        resultatMenn.prosentpoeng.push(Number(k1.toFixed(3))+"%");
                         resultatMenn.kommune.push(kommune1.navn);
                     }
-                    else if (k2>k1) {
-                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(2))+"%");
+                    else if (parseFloat(k2)>parseFloat(k1)) {
+                        resultatMenn.prosentpoeng.push(Number(k2.toFixed(3))+"%");
                         resultatMenn.kommune.push(kommune2.navn);
                     }
                     else{
@@ -209,14 +209,14 @@ function getDetalj(){
             }
             function kvinner() {
                 for (let i = 0; i < kommune1["sysselKvinner"].length-1; i++) {
-                    let k1=kommune1["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
-                    let k2=kommune2["sysselKvinner"][i+1]-kommune1["sysselKvinner"][i];
-                    if (k1>k2){
-                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(2))+"%");
+                    let k1=Number ((kommune1["sysselKvinner"][i]-kommune1["sysselKvinner"][i+1])*-1);
+                    let k2=Number( (kommune2["sysselKvinner"][i]-kommune2["sysselKvinner"][i+1])*-1);
+                    if (parseFloat(k1)>parseFloat(k2)){
+                        resultatKvinner.prosentpoeng.push(Number(k1.toFixed(3))+"%");
                         resultatKvinner.kommune.push(kommune1.navn);
                     }
-                    else if(k2>k1) {
-                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(2))+"%");
+                    else if(parseFloat(k2)>parseFloat(k1)) {
+                        resultatKvinner.prosentpoeng.push(Number(k2.toFixed(3))+"%");
                         resultatKvinner.kommune.push(kommune2.navn);
                     }
                     else {

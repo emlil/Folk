@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="05c27df6-7e1e-41cf-b3e0-2b4823ba0674" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Css/mobil.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Javascript/constructor.js" beforeDir="false" afterPath="$PROJECT_DIR$/Javascript/constructor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Javascript/myScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/Javascript/myScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/myCss.css" beforeDir="false" afterPath="$PROJECT_DIR$/Css/myCss.css" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,7 +19,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
+            <state relative-caret-position="204">
               <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
@@ -34,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/Css/mobil.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+              <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -42,17 +37,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Css/myCss.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="654">
+            <state relative-caret-position="1819">
               <caret line="107" selection-start-line="107" selection-end-line="107" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Javascript/myScript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="82" column="12" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="12" />
+            <state relative-caret-position="428">
+              <caret line="212" column="73" selection-start-line="212" selection-start-column="73" selection-end-line="212" selection-end-column="73" />
             </state>
           </provider>
         </entry>
@@ -66,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Javascript/constructor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
+            <state relative-caret-position="241">
+              <caret line="160" column="32" selection-start-line="160" selection-start-column="30" selection-end-line="160" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -109,6 +104,8 @@
       <find>histor</find>
       <find>css3</find>
       <find>oversik</find>
+      <find>sa</find>
+      <find>sammenlign</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -134,8 +131,8 @@
         <option value="$PROJECT_DIR$/Css/myCss.css" />
         <option value="$PROJECT_DIR$/Css/mobil.css" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/Javascript/myScript.js" />
         <option value="$PROJECT_DIR$/Javascript/constructor.js" />
+        <option value="$PROJECT_DIR$/Javascript/myScript.js" />
       </list>
     </option>
   </component>
@@ -156,7 +153,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -183,6 +179,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -241,18 +238,19 @@
       <workItem from="1556280745889" duration="9713000" />
       <workItem from="1556527572540" duration="10957000" />
       <workItem from="1556547762800" duration="13111000" />
+      <workItem from="1557139271676" duration="1609000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78957000" />
+    <option name="totallyTimeSpent" value="80612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.60587513" visible="true" weight="0.1042654" />
-      <window_info id="Structure" order="1" sideWeight="0.39412484" side_tool="true" visible="true" weight="0.1042654" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.60465115" visible="true" weight="0.1042654" />
+      <window_info id="Structure" order="1" sideWeight="0.39534885" side_tool="true" visible="true" weight="0.1042654" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -358,24 +356,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Javascript/tabulator.js">
+    <entry file="file://$PROJECT_DIR$/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Css/myCss.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Css/mobil.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="8" lean-forward="true" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Css/myCss.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1819">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Javascript/tabulator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
         </state>
       </provider>
     </entry>
@@ -389,24 +394,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/index.html">
+    <entry file="file://$PROJECT_DIR$/Javascript/constructor.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="241">
+          <caret line="160" column="32" selection-start-line="160" selection-start-column="30" selection-end-line="160" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Javascript/myScript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="82" column="12" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Javascript/constructor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        <state relative-caret-position="428">
+          <caret line="212" column="73" selection-start-line="212" selection-start-column="73" selection-end-line="212" selection-end-column="73" />
         </state>
       </provider>
     </entry>
