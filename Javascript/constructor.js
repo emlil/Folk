@@ -5,7 +5,7 @@ function BefolkningConstruct() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
         xhr.onreadystatechange=function () {
-            if (this.status===200&&this.readyState===4){
+            if (this.status === 200 && this.readyState === 4){
                 let foo =JSON.parse(xhr.responseText);
                 befolk.datasett=foo["elementer"];
                 ready.push(1);
@@ -83,7 +83,7 @@ function SysselsattConstruct() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
         xhr.onreadystatechange=function () {
-            if (this.status===200&&this.readyState===4){
+            if (this.status === 200 && this.readyState === 4){
                 let foo =JSON.parse(xhr.responseText);
                 syssel.datasett=foo["elementer"];
                 ready.push(1);
@@ -115,7 +115,7 @@ function UtdaninngConstuct() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
         xhr.onreadystatechange=function () {
-            if (this.status===200&&this.readyState===4){
+            if (this.status === 200 && this.readyState === 4){
                 let foo =JSON.parse(xhr.responseText);
                 utdanning.datasett=foo;
                 ready.push(1);
