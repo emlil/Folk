@@ -113,7 +113,6 @@ function getSammenligning() {
 
     //sammenligndata måler dataen mot hverandre og oppretter et objekt som sier hvem som har høyest vekst når.
     let resultat = sammenlignData(k1Data, k2Data);
-    console.log(resultat);
 
     document.getElementById("kommune1").innerHTML = tabellFrickeren2ElectricBogaloo();
 

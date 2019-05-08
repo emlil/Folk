@@ -39,16 +39,12 @@ function addListeners() {
                 getSammenligning();
             }
             else if (!isNaN(x)&&befolkObj.nrCheck(x)) {
-                console.log("12");
                 komInput[i].style.backgroundColor = "green";
-
             }
             else if (typeof befolkObj.datasett[y] === "object") {
-                console.log("12");
                 komInput[i].style.backgroundColor = "green";
             }
             else {
-                console.log("13");
                 komInput[i].style.backgroundColor = "red"
 
             }

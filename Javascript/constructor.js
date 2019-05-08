@@ -1,15 +1,14 @@
 function BefolkningConstruct() {
     this.url = "http://wildboy.uib.no/~tpe056/folk/104857.json";
     this.onload = null;
+    this.ready=false;
 
-    this.load = function (befolk) {
-        console.log("kjører");
+    this.load = function (befolk, callback) {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", this.url);
         xhr.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
-                let foo = JSON.parse(xhr.responseText);
-                befolk.datasett = foo["elementer"];
+                callback(JSON.parse(xhr.responseText));
                 befolk.onload = true;
             }
         };
@@ -51,7 +50,6 @@ function BefolkningConstruct() {
         }
         for (elementer in this.datasett) {
             if (this.datasett[elementer]["kommunenummer"] === kommuneNr) {
-                console.log();
                 return this.datasett[elementer]["Kvinner"][aar] + this.datasett[elementer]["Menn"][aar];
             }
 
@@ -95,16 +93,15 @@ function BefolkningConstruct() {
 function SysselsattConstruct() {
     this.url = "http://wildboy.uib.no/~tpe056/folk/100145.json";
     this.onload = null;
-
-    this.load = function (syssel) {
-        console.log("kjører");
+    this.ready=false;
+    this.load = function (syssel, callback) {
         let xhr = new XMLHttpRequest();
         xhr.open("GET", this.url);
         xhr.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
                 let foo = JSON.parse(xhr.responseText);
-                syssel.datasett = foo["elementer"];
-                sysselObj.onload = true;
+                callback(foo["elementer"]);
+                sysselObj.ready = true;
 
             }
         };
@@ -129,15 +126,15 @@ function SysselsattConstruct() {
 function UtdaninngConstuct() {
     this.url = "http://wildboy.uib.no/~tpe056/folk/85432.json";
     this.onload = null;
-    this.load = function (utdanning) {
+    this.ready=false;
+    this.load = function (utdanning,callback) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
         xhr.open("GET", this.url);
         xhr.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
-                let foo = JSON.parse(xhr.responseText);
-                utdanning.datasett = foo;
-                utdanning.onload = true;
+                callback(JSON.parse(xhr.responseText));
+                utdanning.ready = true;
             }
         };
         xhr.send();
@@ -175,15 +172,25 @@ function UtdaninngConstuct() {
 function onStart() {
     try {
         befolkObj = new BefolkningConstruct();
-        befolkObj.load(befolkObj);
+        sysselObj = new SysselsattConstruct();
+        utdanningObj = new UtdaninngConstuct();
+
+        befolkObj.load(befolkObj, function (data) {
+            befolkObj.datasett=data;
+            sysselObj.load(sysselObj,function (data) {
+                sysselObj.datasett=data;
+                utdanningObj.load(utdanningObj,function (data) {
+                    utdanningObj.datasett=data;
+                });
+            });
+
+        });
         console.log(befolkObj);
 
-        sysselObj = new SysselsattConstruct();
-        sysselObj.load(sysselObj);
+
         console.log(sysselObj);
 
-        utdanningObj = new UtdaninngConstuct();
-        utdanningObj.load(utdanningObj);
+
         console.log(utdanningObj);
 
 

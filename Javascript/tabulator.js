@@ -1,5 +1,5 @@
 function openTab(evt, tabName) {
-    if(utdanningObj.onload===null&&!evt){
+    if(utdanningObj.ready===null&&!evt){
         alert("datasettene er ikke lastet inn");
         return;
     }
