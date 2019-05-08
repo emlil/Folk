@@ -25,22 +25,25 @@ function addListeners() {
 
     let smBtn = document.getElementById("sammenlignButton");
     smBtn.addEventListener("click", getSammenligning);
+
     let komInput = document.getElementsByClassName("komInput");
     for (let i = 0; i < komInput.length; i++) {
         komInput[i].addEventListener("keyup", function (event) {
+            // x er verdien om det er komunenummer
+            //y er navnet på kommunen.
+            let x = komInput[i].value;
+            let y=x.toLowerCase();
+            y=y.storBokstav();
+
             if (event.code === "Enter") {
                 getSammenligning();
             }
-            let x = komInput[i].value;
-
-            if (!isNaN(x)&&befolkObj.nrCheck(x)) {
+            else if (!isNaN(x)&&befolkObj.nrCheck(x)) {
                 console.log("12");
                 komInput[i].style.backgroundColor = "green";
 
             }
-            x=x.toLowerCase();
-            x=x.storBokstav();
-            if (typeof befolkObj.datasett[x] === "object") {
+            else if (typeof befolkObj.datasett[y] === "object") {
                 console.log("12");
                 komInput[i].style.backgroundColor = "green";
             }
