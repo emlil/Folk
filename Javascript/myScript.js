@@ -270,6 +270,7 @@ function getDetalj(){
  }
  //funksjon for å gjøre første bokstav i streng om til stor bokstav.
 String.prototype.storBokstav = function() {
+
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 function getSize() {
