@@ -18,11 +18,10 @@
 .button-flex {
   background: lightblue;
   padding: 5px;
-  width: 200px;
-  height: 150px;
-  margin-top: 10px;
-
-  line-height: 150px;
+  width: 20%;
+  height: 100%;
+  margin-top: 2%;
+  line-height: 25%;
   color: black;
   font-weight: bold;
   font-size: auto;
@@ -68,7 +67,7 @@ tr:hover{
     font-weight: bold;
 }
 button:hover {
-    box-shadow: 0 12px 16px 0 black;
+    box-shadow: 0 8px 10px 0 black;
 }
 
 #head {
@@ -85,9 +84,10 @@ footer {
     text-align: center;
 }
 #oversiktData{
-    border: 5px solid black;
+
     width: 500px;
     height: 500px;
+    border: 5px solid black;
     overflow: hidden;
     overflow: auto;
     margin: auto;

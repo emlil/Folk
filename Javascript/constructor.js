@@ -7,7 +7,7 @@ function BefolkningConstruct() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
         xhr.onreadystatechange=function () {
-            if (this.status===200&&this.readyState===4){
+            if (this.status === 200 && this.readyState === 4){
                 let foo =JSON.parse(xhr.responseText);
                 befolk.datasett=foo["elementer"];
                 befolk.onload=true;
@@ -87,7 +87,7 @@ function SysselsattConstruct() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
         xhr.onreadystatechange=function () {
-            if (this.status===200&&this.readyState===4){
+            if (this.status === 200 && this.readyState === 4){
                 let foo =JSON.parse(xhr.responseText);
                 syssel.datasett=foo["elementer"];
                 sysselObj.onload=true;
@@ -120,7 +120,7 @@ function UtdaninngConstuct() {
         let xhr = new XMLHttpRequest();
         xhr.open("GET",this.url);
         xhr.onreadystatechange=function () {
-            if (this.status===200&&this.readyState===4){
+            if (this.status === 200 && this.readyState === 4){
                 let foo =JSON.parse(xhr.responseText);
                 utdanning.datasett=foo;
                 utdanning.onload=true;
@@ -141,9 +141,11 @@ function UtdaninngConstuct() {
 
     this.getHoyUtdanning=function(kommune,aar){
         //antar at høyere utdanning kun er 03a og 04a
+        //11 er lagt til, ser ut til å funke. burde dobbelt sjekkes uansett
         //SE ØVE OM DENNE MATTEN E RIKTIG
         kommune.utdanningProsent =(this.datasett["elementer"][kommune.navn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['03a']["Menn"][aar])/2;
         kommune.utdanningProsent+=((this.datasett["elementer"][kommune.navn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['04a']["Menn"][aar])/2);
+        kommune.utdanningProsent+=((this.datasett["elementer"][kommune.navn]['11']["Kvinner"][aar]+this.datasett["elementer"][kommune.navn]['11']["Menn"][aar])/2);                        
         kommune.utdanningProsent=kommune.utdanningProsent.toFixed(2);
         kommune.utdanningAntall=kommune.befolkning*(kommune.utdanningProsent)/100;
         return kommune;
@@ -151,6 +153,7 @@ function UtdaninngConstuct() {
     this.tabellgetUtdanningProsent=function (kommuneNavn, aar) {
         let utdanning1=(this.datasett["elementer"][kommuneNavn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['03a']["Menn"][aar])/2;
         utdanning1+=((this.datasett["elementer"][kommuneNavn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['04a']["Menn"][aar])/2);
+        utdanning1+=((this.datasett["elementer"][kommuneNavn]['11']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['11']["Menn"][aar])/2);
         return utdanning1.toFixed(2);
     };
 

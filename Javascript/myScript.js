@@ -1,6 +1,5 @@
 
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
-//TODO: Legg til fagskole
 function getDetalj(){
      let nrInn= document.getElementById("detaljNr").value;
 
@@ -35,7 +34,7 @@ function getDetalj(){
     arr.push(aarArray);
 
     //lager en array til hvert datasett
-     //bruker map funksjonen på aarArray for å enkelt gå gjennom de aktuelle verdiene for hvert sett.
+    //bruker map funksjonen på aarArray for å enkelt gå gjennom de aktuelle verdiene for hvert sett.
     let befolkArr=[];
         aarArray.map( aar=>befolkArr.push(befolkObj.getFolketallAar(kommuneNummer,aar)));
      arr.push(befolkArr);

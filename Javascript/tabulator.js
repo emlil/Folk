@@ -7,7 +7,6 @@ function openTab(evt, tabName) {
     var i, tabcontent, tablinks, tabcontentIntro;
 
     // Get all elements with class="tabcontent" and hide them
-    //TODO: gjør slik at introduksjon er default
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
