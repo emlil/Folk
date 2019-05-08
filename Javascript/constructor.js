@@ -1,5 +1,7 @@
 function BefolkningConstruct() {
     this.url="http://wildboy.uib.no/~tpe056/folk/104857.json";
+    this.onload=null;
+
     this.load=function (befolk) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
@@ -8,7 +10,7 @@ function BefolkningConstruct() {
             if (this.status===200&&this.readyState===4){
                 let foo =JSON.parse(xhr.responseText);
                 befolk.datasett=foo["elementer"];
-                ready.push(1);
+                befolk.onload=true;
             }
         };
         xhr.send();
@@ -78,6 +80,8 @@ function BefolkningConstruct() {
 
 function SysselsattConstruct() {
     this.url="http://wildboy.uib.no/~tpe056/folk/100145.json";
+    this.onload=null;
+
     this.load=function (syssel) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
@@ -86,7 +90,7 @@ function SysselsattConstruct() {
             if (this.status===200&&this.readyState===4){
                 let foo =JSON.parse(xhr.responseText);
                 syssel.datasett=foo["elementer"];
-                ready.push(1);
+                sysselObj.onload=true;
 
             }
         };
@@ -105,11 +109,12 @@ function SysselsattConstruct() {
         //bruker kommunenavn for å hente ut data.
         return (this.datasett[kommuneNavn]["Begge kjønn"][aar]).toFixed(2);
     }
-
-
 };
+
+//Antar at dette er det siste datasettet som må lastes inn
 function UtdaninngConstuct() {
     this.url="http://wildboy.uib.no/~tpe056/folk/85432.json";
+    this.onload=null;
     this.load=function (utdanning) {
         console.log("kjører");
         let xhr = new XMLHttpRequest();
@@ -118,13 +123,11 @@ function UtdaninngConstuct() {
             if (this.status===200&&this.readyState===4){
                 let foo =JSON.parse(xhr.responseText);
                 utdanning.datasett=foo;
-                ready.push(1);
-
+                utdanning.onload=true;
             }
         };
         xhr.send();
     };
-
     this.getNames = function(){
         let arr = [];
         let prev="";
@@ -149,7 +152,12 @@ function UtdaninngConstuct() {
         let utdanning1=(this.datasett["elementer"][kommuneNavn]['03a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['03a']["Menn"][aar])/2;
         utdanning1+=((this.datasett["elementer"][kommuneNavn]['04a']["Kvinner"][aar]+this.datasett["elementer"][kommuneNavn]['04a']["Menn"][aar])/2);
         return utdanning1.toFixed(2);
-    }
+    };
+
+    //har ett timeout på ett milisekund for det funker da.
+    //dette er det siste datasettet og når det er lastet vises introduksjonen
+    setTimeout(function () {
+    },1)
 }
 
 function onStart() {
@@ -167,15 +175,12 @@ function onStart() {
         console.log(utdanningObj);
 
 
-        sum=befolkObj.getName()+utdanningObj.get
-
 
     }
     catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
 }
-let ready=[];
 let befolkObj;
 let sysselObj;
 let utdanningObj;

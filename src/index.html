@@ -3,20 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Saklig Sentral Byrå</title>
+
+    <script type="text/javascript" src="../Javascript/tabulator.js"></script>
     <script type="text/javascript" src="../Javascript/myScript.js"></script>
     <script type="text/javascript" src="../Javascript/constructor.js"></script>
-    <script type="text/javascript" src="../Javascript/tabulator.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../Css/myCss.css">
-    <link rel="stylesheet" type="text/css" href="../Css/myCss.css">
+    <link rel="stylesheet" type="text/css" href="../Css/mobil.css">
 
 </head>
-<body onload="openTab(event, 'Introduksjon')">
+<body ONLOAD="openTab(true,'Introduksjon')">
 <div class = "wrapper">
   <header class = "header"><h1> INFO134 - Semesteroppgave vår 2019</h1></header>
   <div id="mainButton-flexcontainers">
-    <button class="button-flex" onClick="openTab(event, 'Introduksjon')">Introduksjon</button>
+    <button  class="button-flex" class=" active" onClick="openTab(event, 'Introduksjon')">Introduksjon</button>
     <button class="button-flex" onclick="openTab(event, 'Oversikt'),getOversikt()">Oversikt</button>
     <button class="button-flex" onclick="openTab(event, 'Detaljer')">Detaljer</button>
     <button class="button-flex" onclick="openTab(event, 'Sammenlign')">sammenligning</button>

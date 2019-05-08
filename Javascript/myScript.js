@@ -1,6 +1,3 @@
- function handleIt(obj) {
-        return (obj);
-    }
 
 //getDetalj Henter data fra datasettene og legger dem til det opprettede objektet kommune slik at de er tilgjengelige for flere handlinger
 //TODO: Legg til fagskole
@@ -191,7 +188,6 @@ function getDetalj(){
                 for (let i = 0; i < kommune1["sysselMenn"].length-1; i++) {
                     let k1=Number((kommune1["sysselMenn"][i]-kommune1["sysselMenn"][i+1])*-1);
                     let k2=Number((kommune2["sysselMenn"][i]-kommune2["sysselMenn"][i+1])*-1);
-                    console.log(k1+"   "+k2)
 
                     if (parseFloat(k1)>parseFloat(k2)){
                         resultatMenn.prosentpoeng.push(Number(k1.toFixed(3))+"%");

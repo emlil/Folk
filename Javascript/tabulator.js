@@ -1,4 +1,8 @@
 function openTab(evt, tabName) {
+    if(utdanningObj.onload===null&&!evt){
+        alert("datasettene er ikke lastet inn");
+        return;
+    }
     // Declare all variables
     var i, tabcontent, tablinks, tabcontentIntro;
 
@@ -19,5 +23,4 @@ function openTab(evt, tabName) {
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
 }
