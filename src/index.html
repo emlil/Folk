@@ -16,27 +16,27 @@
 
 </head>
 <body ONLOAD="onStart()">
-<div class = "wrapper">
-  <header class = "header"><h1> INFO134 - Semesteroppgave vår 2019</h1></header>
-  <div id="mainButton-flexcontainers">
-    <button  class="button-flex" class=" active" onClick="openTab(event, 'Introduksjon')">Introduksjon</button>
-    <button class="button-flex" onclick="openTab(event, 'Oversikt'),getOversikt()">Oversikt</button>
-    <button class="button-flex" onclick="openTab(event, 'Detaljer')">Detaljer</button>
-    <button class="button-flex" onclick="openTab(event, 'Sammenlign')">Sammenligning</button>
-</div>
+<div class="wrapper">
+    <header class="header"><h1> INFO134 - Semesteroppgave vår 2019</h1></header>
+    <div id="mainButton-flexcontainers">
+        <button class="button-flex" class=" active" onClick="openTab(event, 'Introduksjon')">Introduksjon</button>
+        <button class="button-flex" onclick="openTab(event, 'Oversikt'),getOversikt()">Oversikt</button>
+        <button class="button-flex" onclick="openTab(event, 'Detaljer')">Detaljer</button>
+        <button class="button-flex" onclick="openTab(event, 'Sammenlign')">Sammenligning</button>
+    </div>
 </div>
 
-<div class = wrapper>
-<h1>SSB-statistikk</h1>
-  <!-- Tab content -->
-  <div id="Introduksjon" class="tabcontent">
-    <p>Dette er et produkt skapt for å gi deg informasjon om alle komunnenen i norge fra 2007 frem til 2018.<br>
-      <strong>NB:</strong> Vær oppmerksom på at dataene kan inneholde feil <br>
-      <a href="http://data.ssb.no/api/v0/dataset/104857?lang=no">Befolkning</a>
-      <a href="http://data.ssb.no/api/v0/dataset/100145?lang=no">Sysselsatte</a>
-      <a href="http://data.ssb.no/api/v0/dataset/85432?lang=no">Utdannings</a>
-    </p>
-  </div>
+<div class=wrapper>
+    <h1>SSB-statistikk</h1>
+    <!-- Tab content -->
+    <div id="Introduksjon" class="tabcontent">
+        <p>Dette er et produkt skapt for å gi deg informasjon om alle komunnenen i norge fra 2007 frem til 2018.<br>
+            <strong>NB:</strong> Vær oppmerksom på at dataene kan inneholde feil <br>
+            <a href="http://data.ssb.no/api/v0/dataset/104857?lang=no">Befolkning</a>
+            <a href="http://data.ssb.no/api/v0/dataset/100145?lang=no">Sysselsatte</a>
+            <a href="http://data.ssb.no/api/v0/dataset/85432?lang=no">Utdannings</a>
+        </p>
+    </div>
 
     <!-- div field for oversikt -->
     <div id="Oversikt" class="tabcontent">
@@ -46,14 +46,14 @@
     <!-- div field for detaljer -->
     <div id="Detaljer" class="tabcontent">
 
-      Sett inn komunenummer <input id="detaljNr" type="text" value="0101" />
-      <button id="detaljButton">Søk</button>
-      <div>
-        <div id="detaljData"></div>
-        <div id="pross"></div>
-        <div id="totalSyssel"></div>
-        <div id="utdanning"></div>
-      </div>
+        Sett inn komunenummer <input id="detaljNr" type="text" value="0101"/>
+        <button id="detaljButton">Søk</button>
+        <div>
+            <div id="detaljData"></div>
+            <div id="pross"></div>
+            <div id="totalSyssel"></div>
+            <div id="utdanning"></div>
+        </div>
         <div id="historisk-utvikling">
         </div>
     </div>
@@ -67,7 +67,7 @@
         <button id="sammenlignButton">Sammenlign</button>
         <div id="kommune1"></div>
     </div>
-  </div>
+</div>
 
 <footer>
     <p>Dette er en oppgavebesvarelse i faget <strong>INFO134</strong></p>
