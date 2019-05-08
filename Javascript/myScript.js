@@ -56,7 +56,7 @@ function historiskUtvikling(kommuneNummer, kommuneNavn) {
 //Funksjon som setter opp tabellen for historisk data
 //TODO: Legg til prosenttegn
 function tabellFrickeren(arr) {
-    let tabell = "<table class='table'> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
+    let tabell = "<table> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
     let utdanning = arr.pop();
     let sysselsatt = arr.pop();
     let befolkning = arr.pop();
@@ -227,7 +227,7 @@ function getSammenligning() {
     function tabellFrickeren2ElectricBogaloo() {
 
         //oppretter header med alle verdien vi ønsker å ha i tabellen
-        let tabell = "<table class='table'> <tr><th>År</th><th>Befolkning Menn " + k1Data.navn + "</th><th>Sysselsetting Menn " + k1Data.navn + "</th>" +
+        let tabell = "<table> <tr><th>År</th><th>Befolkning Menn " + k1Data.navn + "</th><th>Sysselsetting Menn " + k1Data.navn + "</th>" +
             "<th>Befolkning Menn " + k2Data.navn + "</th><th>Sysselsetting Menn " + k2Data.navn + "</th><th>Høyest Vekst Menn</th><th>Kommune, Høyest Vekst Menn</th>" +
             "<th>Befolkning Kvinner " + k1Data.navn + "</th><th>Sysselsetting Kvinner " + k1Data.navn + "</th><th>Befolkning Kvinner " + k2Data.navn + "</th><th>Sysselsetting Kvinner " + k2Data.navn + "</th>" +
             "<th>Høyest Vekst Kvinner</th><th>Kommune, Høyest Vekst Kvinner</th></tr>";

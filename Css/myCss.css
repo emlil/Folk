@@ -47,7 +47,7 @@ button:hover {
 body {background-color: #c8e6e3
 }
 button {
-    background-color: #082caf;
+    background-color: #c8e6e3;
     border: none;
     border-radius: 50%;
     color: white;
@@ -59,9 +59,17 @@ button {
     margin: 4px 2px;
     cursor: pointer;
 }
-table, th, td {
-    border: 1px solid black;
+
+
+th{
+ background-color: #c8e6e3;
 }
+table{
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+tr:nth-child(odd) {background-color: #c8e6e3;}
 tr:hover{
     background-color: white;
     font-weight: bold;
@@ -78,7 +86,7 @@ tr:hover{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: goldenrod;
+    background-color: tomato;
     color: white;
     text-align: center;
 }
@@ -102,6 +110,6 @@ tr:hover{
   display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
-    background-color: blanchedalmond;
+    background-color: #f9f2ec;
 }
 
