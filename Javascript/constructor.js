@@ -155,7 +155,7 @@ function UtdaninngConstuct() {
 
     this.getHoyUtdanning = function (kommune, aar) {
         //antar at høyere utdanning kun er 03a og 04a
-        //11 er lagt til, ser ut til å funke. burde dobbelt sjekkes uansett
+        //11 er lagt til
         //SE ØVE OM DENNE MATTEN E RIKTIG
         kommune.utdanningProsent = (this.datasett["elementer"][kommune.navn]['03a']["Kvinner"][aar] + this.datasett["elementer"][kommune.navn]['03a']["Menn"][aar]) / 2;
         kommune.utdanningProsent += ((this.datasett["elementer"][kommune.navn]['04a']["Kvinner"][aar] + this.datasett["elementer"][kommune.navn]['04a']["Menn"][aar]) / 2);
@@ -170,11 +170,6 @@ function UtdaninngConstuct() {
         utdanning1 += ((this.datasett["elementer"][kommuneNavn]['11']["Kvinner"][aar] + this.datasett["elementer"][kommuneNavn]['11']["Menn"][aar]) / 2);
         return utdanning1.toFixed(2);
     };
-
-    //har ett timeout på ett milisekund for det funker da.
-    //dette er det siste datasettet og når det er lastet vises introduksjonen
-    setTimeout(function () {
-    }, 1)
 }
 
 function onStart() {
@@ -190,6 +185,8 @@ function onStart() {
         utdanningObj = new UtdaninngConstuct();
         utdanningObj.load(utdanningObj);
         console.log(utdanningObj);
+
+
 
         openTab(true, 'Introduksjon');
         addListeners();
