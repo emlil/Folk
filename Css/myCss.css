@@ -27,6 +27,9 @@
   font-size: auto;
   text-align: auto;
 }
+button:hover {
+    box-shadow: 0 8px 10px 0 black;
+}
 
 .wrapper {
   display: flex;
@@ -39,10 +42,7 @@
   padding: 10px;
   flex: 1 100%;
 }
-/*
-.header {
-  background: tomato;
-*/
+
 
 body {background-color: #c8e6e3
 }
@@ -66,26 +66,25 @@ tr:hover{
     background-color: white;
     font-weight: bold;
 }
-button:hover {
-    box-shadow: 0 8px 10px 0 black;
-}
 
-#head {
+
+#header {
     float: top;
+    background-color: tomato;
 }
 
-footer {
-    background-color: aliceblue;
-    position: relative;
+#footer {
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    float: bottom;
+    background-color: goldenrod;
+    color: white;
     text-align: center;
 }
 #oversiktData{
 
-    width: 500px;
+    width: 40%;
     height: 500px;
     border: 5px solid black;
     overflow: hidden;
@@ -103,6 +102,6 @@ footer {
   display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
-  border-top: none;
+    background-color: blanchedalmond;
 }
 

@@ -51,8 +51,6 @@ function historiskUtvikling(kommuneNummer, kommuneNavn) {
     arr.push(utdanningArr);
 
     return tabellFrickeren(arr);
-
-
 }
 
 //Funksjon som setter opp tabellen for historisk data
@@ -66,7 +64,6 @@ function tabellFrickeren(arr) {
 
     while (utdanning.length >= 1) {
         tabell += nextTabellLine(utdanning.pop(), sysselsatt.pop(), befolkning.pop(), aarstall.pop());
-
     }
     tabell += "</table>";
 
@@ -78,7 +75,6 @@ function tabellFrickeren(arr) {
             + sysselsatt + "%" + "</td><td class = 'detaljTabell'>"
             + utdanning + "%" + "</td></tr>"
     }
-
     return tabell;
 }
 
@@ -97,14 +93,13 @@ function getOversikt() {
     document.getElementById("oversiktData").innerHTML = arr;
 }
 
-//TODO: Legg til feilmelding hvis gyldig har blitt søkt og så ugyldig.
+
 function getSammenligning() {
     //Fordi du kan  skrive inn kommunenummer eller navn,må vi finne ut hva du skrev inn
     let k1 = [document.getElementById("k1").value];
     let k2 = [document.getElementById("k2").value];
     k1 = sjekkInput(k1);
     k2 = sjekkInput(k2);
-
 
     //oppretter tabell i rekkevidden  vi ønsker, gjør det også enklere å iterere gjennom data
     let aarArray = [];
@@ -126,7 +121,6 @@ function getSammenligning() {
     //Om brukeren skriver tull eller har feil i input blir fanget og gitt tilbakemelding
     function sjekkInput(kommune) {
         try {
-
             //SJEKKER OM ENESTE OBJEKT I TABELLENE ER STRING, OM DET ER GJØRES ALLE BOKSTAVENE SMÅ, OG FORBOKSTAV STOR,
             // SLIK AT DET KAN HENTES KOMMUNENUMMER
 
@@ -249,7 +243,6 @@ function getSammenligning() {
             let foo = [resultat.resultatKvinner.kommune.pop(), resultat.resultatKvinner.prosentpoeng.pop(), k2Data.sysselKvinner.pop() + "%", k2Data.popKvinner.pop(), k1Data.sysselKvinner.pop() + "%", k1Data.popKvinner.pop(),
                 resultat.resultatMenn.kommune.pop(), resultat.resultatMenn.prosentpoeng.pop(), k2Data.sysselMenn.pop() + "%", k2Data.popMenn.pop(), k1Data.sysselMenn.pop() + "%", k1Data.popMenn.pop(), aarArray.pop()
             ];
-
             tabell += nextTabellLine(foo);
         }
         tabell += "</table>";
@@ -263,22 +256,17 @@ function getSammenligning() {
             }
             temp += "</tr>";
             return temp;
-
-            //  "<tr><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
-            //"<td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td><td>"+foo.pop()+"</td>" +
-            //  "<td>"+foo.pop()+"</td></tr>"
         }
-
         return tabell;
     }
 }
 
 //funksjon for å gjøre første bokstav i streng om til stor bokstav.
 String.prototype.storBokstav = function () {
-
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
+//Viser antall kommuner i hvert datasett.
 function getSize() {
     console.log("Befolkning " + Object.keys(befolkObj.datasett).length);
     console.log("Sysselsettning " + Object.keys(sysselObj.datasett).length);
