@@ -15,7 +15,7 @@
     <link rel="stylesheet" type="text/css" href="../Css/mobil.css">
 
 </head>
-<body ONLOAD="openTab(true,'Introduksjon')">
+<body ONLOAD="onStart()">
 <div class = "wrapper">
   <header class = "header"><h1> INFO134 - Semesteroppgave vår 2019</h1></header>
   <div id="mainButton-flexcontainers">
@@ -45,8 +45,9 @@
 
     <!-- div field for detaljer -->
     <div id="Detaljer" class="tabcontent">
-      <input id="detaljNr" type="text" value="0101" />
-      <button onclick="getDetalj();">Søk</button>
+
+      Sett inn komunenummer <input id="detaljNr" type="text" value="0101" />
+      <button id="detaljButton">Søk</button>
       <div>
         <div id="detaljData"></div>
         <div id="pross"></div>
@@ -61,9 +62,9 @@
     <!--TODO: Legg en flexbox rundt denne-->
     <div id="Sammenlign" class="tabcontent">
         <p>Skriv inn to kommuners navn eller nummer for sammenligning</p>
-        <input id="k1" type="text" value="Stavanger">
-        <input id="k2" type="text" value="Sandnes">
-        <button onclick="getSammenligning()">Sammenlign</button>
+        <input class="komInput" id="k1" type="text" value="Stavanger">
+        <input class="komInput" id="k2" type="text" value="Sandnes">
+        <button id="sammenlignButton">Sammenlign</button>
         <div id="kommune1"></div>
     </div>
   </div>

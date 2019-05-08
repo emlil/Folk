@@ -5,6 +5,10 @@ function getDetalj(){
 
     //Oppretter obbjekt for kommunen det skal hentes data fra
     let kommune=befolkObj.getInfo(nrInn,2018);
+    if (kommune.navn===undefined){
+        alert("kommunenummer stemmer ikke");
+        return;
+    }
     document.getElementById("detaljData").innerHTML="<strong>"+kommune['navn']+"</strong>("+kommune['nummer']+")</br> Sist målte befolkning: "+kommune['befolkning'];
 
     kommune.prosent=sysselObj.sysselSattePros(kommune['navn'],2018);
@@ -120,8 +124,10 @@ function getDetalj(){
         function sjekkInput(kommune) {
             try {
 
+                    //SJEKKER OM ENESTE OBJEKT I TABELLENE ER STRING, OM DET ER GJØRES ALLE BOKSTAVENE SMÅ, OG FORBOKSTAV STOR,
+                // SLIK AT DET KAN HENTES KOMMUNENUMMER
 
-                if (isNaN(kommune[0].charAt(0))) {
+                if (typeof kommune[0]==="string") {
                     kommune[0]=kommune[0].toLowerCase();
                     kommune[0]=kommune[0].storBokstav();
                     kommune.unshift(befolkObj.getNummer(kommune[0]));
@@ -266,5 +272,9 @@ function getDetalj(){
 String.prototype.storBokstav = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
-
+function getSize() {
+    console.log("Befolkning "+Object.keys(befolkObj.datasett).length);
+    console.log("Sysselsettning "+Object.keys(sysselObj.datasett).length);
+    console.log("Utdanning " +Object.keys(utdanningObj.datasett.elementer).length);
+}
 

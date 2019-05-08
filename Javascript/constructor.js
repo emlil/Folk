@@ -46,6 +46,9 @@ function BefolkningConstruct() {
     };
 
     this.getFolketallAar=function (kommuneNr,aar) {
+        if(aar === undefined){
+            aar=2017
+        }
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
                 console.log();
@@ -60,6 +63,9 @@ function BefolkningConstruct() {
     //ikke eksisterer i objectet. Den returnerer en string med elementet hvis den
     //finner det.
     this.getInfo=function (kommuneNr,aar) {
+        if(aar === undefined){
+            aar=2017
+        }
         for (elementer in this.datasett){
             if(this.datasett[elementer]["kommunenummer"]===kommuneNr){
                 //Oppretter et objekt for valgte kommune slik at vi kan ta ut infoen etter objektet er returnert.
@@ -177,15 +183,42 @@ function onStart() {
         utdanningObj.load(utdanningObj);
         console.log(utdanningObj);
 
-
-
+        openTab(true,'Introduksjon');
+        addListeners();
     }
     catch(e) {
         console.log("CAUGHT EXCEPTION", e);
     }
 }
+//EventListeners laget for to av knappene for å vise at det kan gjøres
+
+function addListeners(){
+    let dtBtn= document.getElementById("detaljButton");
+    dtBtn.addEventListener("click",function () {
+        getDetalj()
+    });
+    let dtInput= document.getElementById("detaljNr");
+    dtInput.addEventListener("keyup", function (event) {
+        if (event.code === "Enter") {
+            getDetalj();
+        }
+    });
+
+    let smBtn=document.getElementById("sammenlignButton");
+    smBtn.addEventListener("click", getSammenligning);
+    let komInput= document.getElementsByClassName("komInput");
+    for (let i = 0; i < komInput.length; i++) {
+        komInput[i].addEventListener("keyup", function (event) {
+            if (event.code==="Enter"){
+                getSammenligning();
+            }
+        })
+    }
+
+}
 let befolkObj;
 let sysselObj;
 let utdanningObj;
 
-onStart();
+
+
