@@ -10,7 +10,7 @@ function BefolkningConstruct() {
             if (this.status === 200 && this.readyState === 4) {
                 let foo = JSON.parse(xhr.responseText);
                 callback(foo["elementer"]);
-                befolk.onload = true;
+                befolk.ready = true;
             }
         };
         xhr.send();
