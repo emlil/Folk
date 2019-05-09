@@ -18,7 +18,7 @@ function getDetalj() {
     document.getElementById("totalSyssel").innerHTML = "Totalt antall sysselsatt: " + kommune['antallSysselsatt'];
 
     kommune = utdanningObj.getHoyUtdanning(kommune, 2017);
-    document.getElementById("utdanning").innerHTML = "Prosent utdanning " + kommune.utdanningProsent + "</br> Antall utdannet: " + kommune.utdanningAntall;
+    document.getElementById("utdanning").innerHTML = "Prosent utdanning " + kommune.utdanningProsent + "</br> Antall utdannet: " + kommune.utdanningAntall.toFixed();
 
     let tabell = historiskUtvikling(kommune['nummer'], kommune['navn']);
     //setter tabell inn i html
@@ -248,8 +248,20 @@ function getSammenligning() {
 
         //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
         function nextTabellLine(foo) {
-
             let temp = "<tr>";
+            console.log(foo);
+            if (foo[0]===k2Data.navn) {
+                foo[2]=`<span style="background-color:greenyellow"> ${foo[2]}</span>`
+            }
+           else if (foo[0]===k1Data.navn) {
+                foo[4]=`<span style="background-color:greenyellow"> ${foo[4]}</span>`
+            }
+            if (foo[0]===k2Data.navn) {
+                foo[8]=`<span style="background-color:greenyellow"> ${foo[8]}</span>`
+            }
+            else if (foo[0]===k1Data.navn) {
+                foo[10]=`<span style="background-color:greenyellow"> ${foo[10]}</span>`
+            }
             while (foo.length >= 1) {
                 temp += "<td class = 'sammenligntabell'>" + foo.pop() + "</td>"
             }
