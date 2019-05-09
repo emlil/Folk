@@ -8,17 +8,15 @@ function getDetalj() {
         alert("kommunenummer stemmer ikke");
         return;
     }
-    document.getElementById("detaljData").innerHTML = "<strong>" + kommune['navn'] + "</strong>(" + kommune['nummer'] + ")</br> Sist målte befolkning: " + kommune['befolkning'];
-
     kommune.prosent = sysselObj.sysselSattePros(kommune['navn'], 2018);
-    document.getElementById("pross").innerHTML = "Prosent sysselsetting: " + kommune['prosent'] + "%";
-
-    //bruker Math.floor her for å få hele tall uten desimal fordi kun hele mennesker jobber
     kommune.antallSysselsatt = Math.floor((kommune['prosent'] / 100) * kommune['befolkning']);
-    document.getElementById("totalSyssel").innerHTML = "Totalt antall sysselsatt: " + kommune['antallSysselsatt'];
-
     kommune = utdanningObj.getHoyUtdanning(kommune, 2017);
-    document.getElementById("utdanning").innerHTML = "Prosent utdanning " + kommune.utdanningProsent + "</br> Antall utdannet: " + kommune.utdanningAntall.toFixed();
+    document.getElementById("detaljData").innerHTML =`${kommune['navn']}(${kommune['nummer']})</br>
+        Sist målte befolkning: ${kommune['befolkning']}</br>
+        Prosent sysselsetting: ${kommune['prosent']}%</br>
+        Totalt antall sysselsatt: ${kommune['antallSysselsatt']}</br>
+        Prosent utdanning: ${kommune['utdanningProsent']}</br>
+        Antall utdannet: ${kommune['utdanningAntall'].toFixed()}`;
 
     let tabell = historiskUtvikling(kommune['nummer'], kommune['navn']);
     //setter tabell inn i html
@@ -70,10 +68,10 @@ function tabellFrickeren(arr) {
     //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
     function nextTabellLine(utdanning, sysselsatt, befolkning, aarstall) {
 
-        return "<tr><td class = 'detaljTabell'>" + aarstall + "</td><td class = 'detaljTabell'>"
-            + befolkning + "</td><td class = 'detaljTabell'>"
-            + sysselsatt + "%" + "</td><td class = 'detaljTabell'>"
-            + utdanning + "%" + "</td></tr>"
+        return `<tr><td class = 'detaljTabell'> ${aarstall}</td>
+            <td class = 'detaljTabell'>${befolkning}</td>
+            <td class = 'detaljTabell'>${sysselsatt}%</td>
+             <td class = 'detaljTabell'>${utdanning}% </td></tr>`
     }
     return tabell;
 }
