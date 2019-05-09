@@ -84,7 +84,7 @@ function getOversikt() {
             + befolkObj.datasett[elementer]["Menn"]["2018"];
         arr += ("<p>" + elementer + " " + befolkObj.datasett[elementer]
                 ["kommunenummer"] + "<p>" +
-            "<p>Siste måling av befolkning: " + befolkning + "</p>");
+            "<p>Siste måling av befolkning: " + befolkning + "</p></br><hr>");
     }
     document.getElementById("oversiktData").innerHTML = arr;
 }
