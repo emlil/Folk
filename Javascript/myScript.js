@@ -225,6 +225,7 @@ function getSammenligning() {
 
     function tabellFrickeren2ElectricBogaloo() {
 
+
         //oppretter header med alle verdien vi ønsker å ha i tabellen
         let tabell = "<table> <tr><th>År</th><th>Befolkning Menn " + k1Data.navn + "</th><th>Sysselsetting Menn " + k1Data.navn + "</th>" +
             "<th>Befolkning Menn " + k2Data.navn + "</th><th>Sysselsetting Menn " + k2Data.navn + "</th><th>Høyest Vekst Menn</th><th>Kommune, Høyest Vekst Menn</th>" +
@@ -250,6 +251,8 @@ function getSammenligning() {
         function nextTabellLine(foo) {
             let temp = "<tr>";
             console.log(foo);
+            //en else if løkke for vekst for menn og en for kvinner
+            //markerer hvor det har vært størst vekst årlig
             if (foo[0]===k2Data.navn) {
                 foo[2]=`<span style="background-color:greenyellow"> ${foo[2]}</span>`
             }

@@ -44,7 +44,10 @@ button:hover {
 }
 
 
-body {background-color: #c8e6e3
+body {
+    background-color: #c8e6e3;
+    font-family: "Raleway", "Courier New", sans-serif;
+
 }
 button {
     background-color: #c8e6e3;
