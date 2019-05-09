@@ -14,10 +14,8 @@ function addListeners() {
         }
         let x = dtInput.value;
         if (befolkObj.nrCheck(x)) {
-            console.log("12");
             dtInput.style.backgroundColor = "green"
         } else {
-            console.log("13");
             dtInput.style.backgroundColor = "red"
 
         }

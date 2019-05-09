@@ -73,7 +73,6 @@ function BefolkningConstruct() {
                 thisKommune.befolkning = this.datasett[elementer]["Kvinner"][aar] + this.datasett[elementer]["Menn"][aar];
                 thisKommune.navn = elementer;
                 thisKommune.nummer = kommuneNr;
-                console.log(thisKommune);
                 return thisKommune;
 
             }
