@@ -46,8 +46,8 @@ button:hover {
 
 body {
     background-color: #c8e6e3;
-    font-family: "Raleway", "Courier New", sans-serif;
-
+    font-family: 'IBM Plex Sans', "Courier New", sans-serif;
+    font-weight: lighter;
 }
 button {
     background-color: #c8e6e3;

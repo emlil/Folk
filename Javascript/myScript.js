@@ -224,13 +224,11 @@ function getSammenligning() {
     }
 
     function tabellFrickeren2ElectricBogaloo() {
-
-
         //oppretter header med alle verdien vi ønsker å ha i tabellen
-        let tabell = "<table> <tr><th>År</th><th>Befolkning Menn " + k1Data.navn + "</th><th>Sysselsetting Menn " + k1Data.navn + "</th>" +
-            "<th>Befolkning Menn " + k2Data.navn + "</th><th>Sysselsetting Menn " + k2Data.navn + "</th><th>Høyest Vekst Menn</th><th>Kommune, Høyest Vekst Menn</th>" +
-            "<th>Befolkning Kvinner " + k1Data.navn + "</th><th>Sysselsetting Kvinner " + k1Data.navn + "</th><th>Befolkning Kvinner " + k2Data.navn + "</th><th>Sysselsetting Kvinner " + k2Data.navn + "</th>" +
-            "<th>Høyest Vekst Kvinner</th><th>Kommune, Høyest Vekst Kvinner</th></tr>";
+        let tabell=`<table><tr><th>År</th><th>Befolkning Menn ${k1Data.navn}</th><th>Sysselsetting Menn ${k1Data.navn}</th>
+             <th>Befolkning Menn ${k2Data.navn}</th><th>Sysselsetting Menn ${k2Data.navn}</th><th>Høyest Vekst Menn</th><th>Kommune, Høyest Vekst Menn</th>
+             <th>Befolkning Kvinner ${k1Data.navn}</th><th>Sysselsetting Kvinner ${k1Data.navn}</th>
+             <th>Befolkning Kvinner ${k2Data.navn}</th><th>Sysselsetting Kvinner ${k2Data.navn}</th><th>Høyest Vekst Kvinner</th><th>Kommune, Høyest Vekst Kvinner</th></tr>`;
 
         //fordi vi ikke har noen data fra 2006 til 2007 setter vi dette året til 0 slik at vi ikke får undefined i tabellen
         resultat.resultatMenn.prosentpoeng.unshift(0);
@@ -250,23 +248,22 @@ function getSammenligning() {
         //funksjon som legger til hver rekke i tabellen så lenge det er mer data å sette inn i tabellen
         function nextTabellLine(foo) {
             let temp = "<tr>";
-            console.log(foo);
             //en else if løkke for vekst for menn og en for kvinner
             //markerer hvor det har vært størst vekst årlig
             if (foo[0]===k2Data.navn) {
-                foo[2]=`<span style="background-color:greenyellow"> ${foo[2]}</span>`
+                foo[2]=`<span style="background-color:greenyellow">${foo[2]}</span>`
             }
            else if (foo[0]===k1Data.navn) {
-                foo[4]=`<span style="background-color:greenyellow"> ${foo[4]}</span>`
+                foo[4]=`<span style="background-color:greenyellow">${foo[4]}</span>`
             }
             if (foo[0]===k2Data.navn) {
-                foo[8]=`<span style="background-color:greenyellow"> ${foo[8]}</span>`
+                foo[8]=`<span style="background-color:greenyellow">${foo[8]}</span>`
             }
             else if (foo[0]===k1Data.navn) {
-                foo[10]=`<span style="background-color:greenyellow"> ${foo[10]}</span>`
+                foo[10]=`<span style="background-color:greenyellow">${foo[10]}</span>`
             }
             while (foo.length >= 1) {
-                temp += "<td class = 'sammenligntabell'>" + foo.pop() + "</td>"
+                temp += `<td class = 'sammenligntabell'>${foo.pop()}</td>`
             }
             temp += "</tr>";
             return temp;
