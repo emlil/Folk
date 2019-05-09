@@ -8,7 +8,8 @@ function BefolkningConstruct() {
         xhr.open("GET", this.url);
         xhr.onreadystatechange = function () {
             if (this.status === 200 && this.readyState === 4) {
-                callback(JSON.parse(xhr.responseText));
+                let foo = JSON.parse(xhr.responseText);
+                callback(foo["elementer"]);
                 befolk.onload = true;
             }
         };
