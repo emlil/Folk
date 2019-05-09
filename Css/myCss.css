@@ -83,7 +83,9 @@ tr:hover{
     float: top;
     background-color:	#008B8B;
 }
-
+#oversiktData{
+    text-align: left;
+}
 #footer {
     position: fixed;
     left: 0;

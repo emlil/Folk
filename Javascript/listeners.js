@@ -33,14 +33,18 @@ function addListeners() {
             let y=x.toLowerCase();
             y=y.storBokstav();
 
-            if (event.code === "Enter") {
-                getSammenligning();
-            }
-            else if (!isNaN(x)&&befolkObj.nrCheck(x)) {
+
+             if (!isNaN(x)&&befolkObj.nrCheck(x)) {
                 komInput[i].style.backgroundColor = "green";
+                 if (event.code === "Enter") {
+                     getSammenligning();
+                 }
             }
             else if (typeof befolkObj.datasett[y] === "object") {
                 komInput[i].style.backgroundColor = "green";
+                 if (event.code === "Enter") {
+                     getSammenligning();
+                 }
             }
             else {
                 komInput[i].style.backgroundColor = "red"
