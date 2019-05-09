@@ -49,7 +49,7 @@ body {background-color: #c8e6e3
 button {
     background-color: #c8e6e3;
     border: none;
-    border-radius: 50%;
+    border-radius: 25px;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -78,7 +78,7 @@ tr:hover{
 
 #header {
     float: top;
-    background-color: tomato;
+    background-color:	#008B8B;
 }
 
 #footer {
@@ -86,8 +86,8 @@ tr:hover{
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: tomato;
-    color: white;
+    background-color: #00CED1;
+    color: black;
     text-align: center;
 }
 #oversiktData{
