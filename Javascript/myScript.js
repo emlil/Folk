@@ -52,8 +52,7 @@ function historiskUtvikling(kommuneNummer, kommuneNavn) {
 }
 
 //Funksjon som setter opp tabellen for historisk data
-//TODO: Legg til prosenttegn
-function tabellFrickeren(arr) {
+    function tabellFrickeren(arr) {
     let tabell = "<table> <tr><th>År</th><th>Befolkning</th><th>Sysselsetting</th><th>Utdanning</th></tr>";
     let utdanning = arr.pop();
     let sysselsatt = arr.pop();
@@ -83,10 +82,9 @@ function getOversikt() {
     for (elementer in befolkObj.datasett) {
         let befolkning = befolkObj.datasett[elementer]["Kvinner"]["2018"]
             + befolkObj.datasett[elementer]["Menn"]["2018"];
-
         arr += ("<p>" + elementer + " " + befolkObj.datasett[elementer]
                 ["kommunenummer"] + "<p>" +
-            "<p>Siste måling av befolkning: " + befolkning + "</p><br>");
+            "<p>Siste måling av befolkning: " + befolkning + "</p>");
     }
     document.getElementById("oversiktData").innerHTML = arr;
 }
@@ -196,7 +194,7 @@ function getSammenligning() {
                     resultatMenn.prosentpoeng.push(Number(k2.toFixed(3)) + "%");
                     resultatMenn.kommune.push(kommune2.navn);
                 } else {
-                    resultatMenn.prosentpoeng.push(0);
+                    resultatMenn.prosentpoeng.push(Number(k2.toFixed(3)) + "%");
                     resultatMenn.kommune.push("Lik vekst");
                 }
             }
@@ -213,7 +211,7 @@ function getSammenligning() {
                     resultatKvinner.prosentpoeng.push(Number(k2.toFixed(3)) + "%");
                     resultatKvinner.kommune.push(kommune2.navn);
                 } else {
-                    resultatKvinner.prosentpoeng.push(0);
+                    resultatKvinner.prosentpoeng.push(Number(k2.toFixed(3)) + "%");
                     resultatKvinner.kommune.push("Lik vekst");
                 }
             }
@@ -254,10 +252,10 @@ function getSammenligning() {
            else if (foo[0]===k1Data.navn) {
                 foo[4]=`<span style="background-color:greenyellow">${foo[4]}</span>`
             }
-            if (foo[0]===k2Data.navn) {
+            if (foo[6]===k2Data.navn) {
                 foo[8]=`<span style="background-color:greenyellow">${foo[8]}</span>`
             }
-            else if (foo[0]===k1Data.navn) {
+            else if (foo[6]===k1Data.navn) {
                 foo[10]=`<span style="background-color:greenyellow">${foo[10]}</span>`
             }
             while (foo.length >= 1) {
