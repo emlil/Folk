@@ -188,7 +188,7 @@ function onStart() {
         console.log(befolkObj);
         console.log(sysselObj);
         console.log(utdanningObj);
-
+        
         openTab(true, 'Introduksjon');
         addListeners();
     } catch (e) {

@@ -50,10 +50,10 @@ body {
     font-weight: lighter;
 }
 button {
-    background-color: #c8e6e3;
+    background-color: #20e6e1;
     border: none;
     border-radius: 25px;
-    color: white;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -82,6 +82,7 @@ tr:hover{
 #header {
     float: top;
     background-color:	#008B8B;
+    margin-bottom: 20px;
 }
 #oversiktData{
     text-align: left;
@@ -100,7 +101,6 @@ tr:hover{
     width: 40%;
     height: 500px;
     border: 5px solid black;
-    overflow: hidden;
     overflow: auto;
     margin: auto;
 }
@@ -115,6 +115,6 @@ tr:hover{
   display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
-    background-color: #f9f2ec;
+    background-color: rgb(5, 184, 184);
 }
 
